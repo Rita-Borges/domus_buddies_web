@@ -8,14 +8,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
+            colors: [Colors.lightBlue.shade100, Colors.blue.shade600, Colors.indigo.shade900],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Colors.blue,
-              Colors.purple,
-            ],
           ),
         ),
         child: Padding(
@@ -83,7 +80,7 @@ class LoginPage extends StatelessWidget {
            const SizedBox(height: 16.0),
               RichText(
                 text: TextSpan(
-                text: 'Nao tem conta? Efetue o seu registo, ',
+                text: 'Para Efetuar o seu registo, ',
                 style: const TextStyle(color: Colors.white),
                 children: [
               TextSpan(
@@ -104,7 +101,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 16.0),
               RichText(
                 text: TextSpan(
-                  text: 'Para recuperar a password, ',
+                  text: 'Para recuperar a sua password, ',
                   style: const TextStyle(color: Colors.white),
                   children: [
                     TextSpan(
