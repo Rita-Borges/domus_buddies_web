@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.pink.shade400,
+                        primary: Colors.pink,
                         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
@@ -80,13 +80,12 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 16),
-
                     ElevatedButton.icon(
                       onPressed: () {
                         // Handle login button press
                       },
                       icon: Icon(
-                        Icons.app_registration,
+                        Icons.pets,
                         //Icons.account_circle,
                         //Icons.app_registration,
                         color: Colors.white,
@@ -99,7 +98,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
+                        primary: Colors.pink,
                         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
