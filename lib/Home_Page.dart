@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.lightBlue.shade100, Colors.blue.shade600, Colors.indigo.shade900],
+              colors: [Colors.lightBlue.shade200, Colors.blue.shade600, Colors.indigo.shade900],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 24),
                  Image.asset(
-                  'assets/images/ImageHome.jpeg',
+                  'assets/images/img.jpg',
                 ),
               SizedBox(height: 16),
 
