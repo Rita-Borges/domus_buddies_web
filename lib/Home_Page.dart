@@ -21,7 +21,6 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                //textAlign: TextAlign.center,
                 ' Domus Buddies',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -34,22 +33,7 @@ class HomePage extends StatelessWidget {
                  Image.asset(
                   'assets/images/img.jpg',
                 ),
-              SizedBox(height: 16),
-
-              /*     Icon(
-                Icons.sunny,
-                color: Colors.white,
-              ),
-             Text(
-                 'Está um bom  dia para passear com o seu Pet',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'Roboto',
-                ),
-              ),*/
-              SizedBox(height: 32),
+              SizedBox(height: 40),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -60,8 +44,6 @@ class HomePage extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.account_circle,
-                        //Icons.account_circle,
-                        //Icons.app_registration,
                         color: Colors.white,
                       ),
                       label: Text(
