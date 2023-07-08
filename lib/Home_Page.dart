@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage ({super.key});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,11 @@ class HomePage extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.lightBlue.shade200, Colors.blue.shade600, Colors.indigo.shade900],
+              colors: [
+                Colors.lightBlue.shade200,
+                Colors.blue.shade600,
+                Colors.indigo.shade900
+              ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -30,9 +34,9 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24),
-                 Image.asset(
-                  'assets/images/img.jpg',
-                ),
+              Image.asset(
+                'assets/images/img.jpg',
+              ),
               SizedBox(height: 40),
               Center(
                 child: Row(
@@ -55,7 +59,8 @@ class HomePage extends StatelessWidget {
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.pink,
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
                         ),
@@ -67,7 +72,7 @@ class HomePage extends StatelessWidget {
                         // Handle login button press
                       },
                       icon: Icon(
-                        Icons.pets,
+                        Icons.person_add,
                         //Icons.account_circle,
                         //Icons.app_registration,
                         color: Colors.white,
@@ -81,7 +86,8 @@ class HomePage extends StatelessWidget {
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.pink,
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
                         ),
@@ -97,7 +103,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-

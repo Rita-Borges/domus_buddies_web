@@ -64,6 +64,7 @@ flutter:
     - assets/images/gato_amarelo.jpg
     - assets/images/luna1.jpg
     - assets/images/logo1.png
+    - assets/images/logo2.png
     - assets/images/ImageHome.jpeg
     - assets/images/img.jpg
 
@@ -79,9 +80,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-  - family: Handwritten
-    fonts:
-      - asset: assets/fonts/Kalam-Bold.ttf
+    - family: Handwritten
+      fonts:
+        - asset: assets/fonts/Kalam-Bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
