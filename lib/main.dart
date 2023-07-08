@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-
 //import "package:domus_buddies/login.dart";
 //import 'Home_Page.dart';
-import 'Registo.dart';
+//import 'Registo.dart';
+import 'package:flutter/material.dart';
+
+import 'AddPetToUser.dart';
 
 void main() {
   runApp(const DomusBuddiesApp());
@@ -18,7 +19,9 @@ class DomusBuddiesApp extends StatelessWidget {
       theme: ThemeData(),
       //home: const LoginPage(),
       //home: const HomePage(),
-      home: RegisterPage(),
+      //home: RegisterPage(),
+      //home: AddPet(),
+      home: AddPetToUser(),
     );
   }
 }

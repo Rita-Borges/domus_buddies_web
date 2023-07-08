@@ -26,11 +26,12 @@ class LoginPage extends StatelessWidget {
             children: [
               const SizedBox(height: 80.0), // Add extra space above the title
               const Text(
-                'Login ',
+                'Efetue Login ',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 32.0,
+                  fontSize: 40.0,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Handwritten',
                 ),
               ),
               const SizedBox(height: 24.0),
@@ -59,7 +60,7 @@ class LoginPage extends StatelessWidget {
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                         color: Colors
-                            .lightBlueAccent), // Set the focused underline color to white
+                            .pink), // Set the focused underline color to white
                   ),
                 ),
               ),
@@ -79,7 +80,7 @@ class LoginPage extends StatelessWidget {
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                         color: Colors
-                            .lightBlueAccent), // Set the focused underline color to white
+                            .pink), // Set the focused underline color to white
                   ),
                 ),
                 obscureText: true,
