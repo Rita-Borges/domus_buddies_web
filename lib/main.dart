@@ -16,7 +16,7 @@ class DomusBuddiesApp extends StatelessWidget {
       theme: ThemeData(),
       //home: LoginPage(),
       home: HomePageWeatherTest(),
-      //home: RegisterPage(),
+
       //home: AddPetToUser(),
     );
   }

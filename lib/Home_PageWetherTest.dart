@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'Registo.dart';
+import 'login.dart';
+
 class HomePageWeatherTest extends StatefulWidget {
   const HomePageWeatherTest({Key? key}) : super(key: key);
 
@@ -23,7 +26,7 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
   void fetchWeather() async {
     final apiKey =
         'bd5e378503939ddaee76f12ad7a97608'; // Replace with your OpenWeatherMap API key
-    final city = 'Aveiro'; // Replace with the desired city name
+    final city = 'Lisbon'; // Replace with the desired city name
 
     final url = Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric');
@@ -36,7 +39,7 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
         final temp = jsonData['main']['temp'];
 
         setState(() {
-          _currentWeather = 'Temperatura: $temp°C';
+          _currentWeather = 'Temperature: $temp°C';
           _weatherIcon = getWeatherIcon(temp);
         });
       } else {
@@ -63,6 +66,20 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
     } else {
       return Icons.severe_cold;
     }
+  }
+
+  void navigateToLoginPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+  }
+
+  void navigateToRegisterPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegisterPage()),
+    );
   }
 
   @override
@@ -119,9 +136,7 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton.icon(
-                      onPressed: () {
-                        // Handle login button press
-                      },
+                      onPressed: navigateToLoginPage, // Navigate to login page
                       icon: Icon(
                         Icons.account_circle,
                         color: Colors.white,
@@ -144,15 +159,13 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
                     ),
                     SizedBox(width: 16),
                     ElevatedButton.icon(
-                      onPressed: () {
-                        // Handle login button press
-                      },
+                      onPressed: navigateToRegisterPage,
                       icon: Icon(
                         Icons.person_add,
                         color: Colors.white,
                       ),
                       label: Text(
-                        'Registar',
+                        'Register',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -174,6 +187,28 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class LoginPage1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Login Page',
+      theme: ThemeData(),
+      home: LoginPage(),
+    );
+  }
+}
+
+class RegisterPage1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Login Page',
+      theme: ThemeData(),
+      home: RegisterPage(),
     );
   }
 }
