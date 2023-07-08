@@ -198,7 +198,7 @@ class _AddPetToUserState extends State<AddPetToUser> {
                   ],
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.pink,
+                  backgroundColor: Colors.pink,
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24),
