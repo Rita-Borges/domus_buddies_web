@@ -1,8 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'Registo.dart';
+
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +94,6 @@ class LoginPage extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.account_circle,
-                  //Icons.account_circle,
-                  //Icons.app_registration,
                   color: Colors.white,
                 ),
                 label: Text(
@@ -126,7 +126,12 @@ class LoginPage extends StatelessWidget {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          // Handle register link tap
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegistrationPage(),
+                            ),
+                          );
                         },
                     ),
                   ],
@@ -147,7 +152,12 @@ class LoginPage extends StatelessWidget {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          // Handle register link tap
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PasswordRecoveryPage(),
+                            ),
+                          );
                         },
                     ),
                   ],
@@ -157,6 +167,28 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class RegistrationPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Registration Page',
+      theme: ThemeData(),
+      home: RegisterPage(),
+    );
+  }
+}
+
+class PasswordRecoveryPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Registration Page',
+      theme: ThemeData(),
+      home: PasswordRecoveryPage(),
     );
   }
 }

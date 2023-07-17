@@ -206,9 +206,9 @@ class RegisterPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Login Page',
+      title: 'Registration Page',
       theme: ThemeData(),
-      home: RegisterPage(),
+      home: PasswordRecoveryPage(),
     );
   }
 }
