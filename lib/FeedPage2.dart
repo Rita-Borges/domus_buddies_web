@@ -134,7 +134,7 @@ class NovidadesPage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showUploadOptionsBottomSheet(context); // Show the upload options when plus button is pressed
+            _showListBottomSheet(context); // Show the list when plus button is pressed
           },
           child: Icon(Icons.add, color: Colors.white),
           backgroundColor: Colors.pink,
@@ -142,6 +142,7 @@ class NovidadesPage extends StatelessWidget {
       ),
     );
   }
+
 
   void _showListBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -157,7 +158,7 @@ class NovidadesPage extends StatelessWidget {
                 tileColor: Colors.white, // White background for each list item
                 title: Text(
                   comment,
-                  style: TextStyle(color: Colors.white), // Black text color for each comment
+                  style: TextStyle(color: Colors.black), // Black text color for each comment
                 ),
                 onTap: () {
                   // Handle comment tap if needed
@@ -169,42 +170,5 @@ class NovidadesPage extends StatelessWidget {
       },
     );
   }
-
-  void showUploadOptionsBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          color: Colors.pink,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: Icon(Icons.video_library, color: Colors.white),
-                title: Text(
-                  'Upload Video',
-                  style: TextStyle(color: Colors.white), // White text color
-                ),
-                onTap: () {
-                  // Handle upload video action
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.image, color: Colors.white),
-                title: Text(
-                  'Upload Image',
-                  style: TextStyle(color: Colors.white), // White text color
-                ),
-                onTap: () {
-                  // Handle upload image action
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
 }
+
