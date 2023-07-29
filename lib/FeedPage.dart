@@ -79,8 +79,9 @@ class NovidadesPage extends StatelessWidget {
               //     ),
               //   ),
               // ),
-              SizedBox(height: 24),
+              //SizedBox(height: 24),
               Container(
+                //height: 200, // Set the desired height for the image
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -94,6 +95,7 @@ class NovidadesPage extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
+
                     Positioned(
                       bottom: 8,
                       right: 8,
@@ -129,9 +131,116 @@ class NovidadesPage extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 16),
+              // Second Image
+              Container(
+                //height: 200, // Set the desired height for the image
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        'assets/images/luna1.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: Row(
+                        children: [
+                          Icon(Icons.favorite, color: Colors.pink),
+                          SizedBox(width: 4),
+                          Text(
+                            '95',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          IconButton(
+                            icon: Icon(Icons.comment, color: Colors.pink),
+                            onPressed: () {
+                              _showListBottomSheet(context);
+                            },
+                          ),
+                          SizedBox(width: 4),
+                          Text(
+                            '30',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 16),
+              // Second Image
+              Container(
+                //height: 200, // Set the desired height for the image
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        'assets/images/luna1.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: Row(
+                        children: [
+                          Icon(Icons.favorite, color: Colors.pink),
+                          SizedBox(width: 4),
+                          Text(
+                            '95',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          IconButton(
+                            icon: Icon(Icons.comment, color: Colors.pink),
+                            onPressed: () {
+                              _showListBottomSheet(context);
+                            },
+                          ),
+                          SizedBox(width: 4),
+                          Text(
+                            '30',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
             ],
           ),
         ),
+
+
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showUploadOptionsBottomSheet(context); // Show the upload options when plus button is pressed
