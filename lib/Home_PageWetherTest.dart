@@ -208,7 +208,7 @@ class RegisterPage1 extends StatelessWidget {
     return MaterialApp(
       title: 'Registration Page',
       theme: ThemeData(),
-      home: PasswordRecoveryPage(),
+      home: PositiveLogin(),
     );
   }
 }

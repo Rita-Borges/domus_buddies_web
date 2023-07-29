@@ -111,32 +111,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 32.0),
-              RichText(
-                text: TextSpan(
-                  text: 'Para Efetuar o seu registo, ',
-                  style: const TextStyle(color: Colors.white),
-                  children: [
-                    TextSpan(
-                      text: 'clique Aqui',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.lightBlueAccent,
-                        decoration: TextDecoration.underline,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RegistrationPage(),
-                            ),
-                          );
-                        },
-                    ),
-                  ],
-                ),
-              ),
+
               const SizedBox(height: 16.0),
               RichText(
                 text: TextSpan(
@@ -155,7 +130,7 @@ class LoginPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => PasswordRecoveryPage(),
+                              builder: (context) => PositiveLogin(),
                             ),
                           );
                         },
@@ -171,13 +146,13 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class RegistrationPage extends StatelessWidget {
+class PositiveLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Registration Page',
+      title: 'Move to feedPage',
       theme: ThemeData(),
-      home: RegisterPage(),
+      //home: PositiveLogin(),
     );
   }
 }
@@ -186,9 +161,9 @@ class PasswordRecoveryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Registration Page',
+      title: 'Password Recovery Page',
       theme: ThemeData(),
-      home: PasswordRecoveryPage(),
+      home: PositiveLogin(),
     );
   }
 }

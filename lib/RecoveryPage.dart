@@ -33,9 +33,10 @@ class PasswordRecoveryPage extends StatelessWidget {
               const Text(
                 'Recuperar Password',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.pink,
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Handwritten',
                 ),
               ),
               const SizedBox(height: 50.0),
