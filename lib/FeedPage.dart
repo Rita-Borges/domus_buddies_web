@@ -1,53 +1,54 @@
-//import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage ({super.key});
+class NovidadesPage extends StatelessWidget {
+  const NovidadesPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.lightBlue.shade200,
           elevation: 0, // Remove app bar shadow
-          leading: IconButton(
-            icon: Icon(Icons.home),
-            //icon: Icon(Icons.login),
-            onPressed: () {
-              // Handle login button press
-            },
-          ),
+          centerTitle: true, // Center the title (Novidades) in the app bar
           actions: [
             IconButton(
-              icon: Icon(Icons.menu),
-              //icon: Icon(Icons.search),
+              icon: Icon(Icons.menu, color: Colors.pink),
               onPressed: () {
                 // Handle search button press
               },
             ),
             IconButton(
-              icon: Icon(Icons.pin_drop),
+              icon: Icon(Icons.pin_drop, color: Colors.pink),
               onPressed: () {
                 // Handle notifications button press
               },
             ),
-
             IconButton(
-              icon: Icon(Icons.account_circle),
-              //icon: Icon(Icons.search),
+              icon: Icon(Icons.account_circle, color: Colors.pink),
               onPressed: () {
                 // Handle search button press
               },
             ),
           ],
-          //title: Text('Top App Bar'),
-
+          title: Text(
+            'Novidades',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.pink,
+              fontFamily: 'Handwritten',
+            ),
+          ),
         ),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blue, Colors.purple],
+              colors: [
+                Colors.lightBlue.shade200,
+                Colors.blue.shade600,
+                Colors.indigo.shade900
+              ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -57,55 +58,62 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 16),
-              Text(
-                ' Mobile App ',
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'Roboto',
-                ),
-              ),
-              Text(
-                '     Dommus Buddies',
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'Roboto',
-                ),
-              ),
+              // Center(
+              //   child: Text(
+              //     'Novidades',
+              //     style: TextStyle(
+              //       fontSize: 34,
+              //       fontWeight: FontWeight.bold,
+              //       color: Colors.pink,
+              //       fontFamily: 'Handwritten',
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: 24),
-              Image.asset(
-                'assets/images/ImageHome.jpeg', // Replace with your image path
-              ),
-              SizedBox(height: 16),
-              Center(
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    // Handle login button press
-                  },
-                  icon: Icon(
-                    Icons.login,
-                    color: Colors.white,
-                  ),
-                  label: Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        'assets/images/ImageHome.jpeg', // Replace with your image path
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.pink,
-                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: Row(
+                        children: [
+                          Icon(Icons.favorite, color: Colors.red),
+                          SizedBox(width: 4),
+                          Text(
+                            '120',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          Icon(Icons.comment, color: Colors.white),
+                          SizedBox(width: 4),
+                          Text(
+                            '45',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -113,7 +121,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-

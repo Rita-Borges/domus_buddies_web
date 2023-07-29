@@ -1,10 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
+import 'RecoveryPage2.dart';
 import 'Registo.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool _isHovering = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +40,7 @@ class LoginPage extends StatelessWidget {
               const Text(
                 'Efetue Login ',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.pink,
                   fontSize: 40.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Handwritten',
@@ -113,29 +123,43 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 16.0),
-              RichText(
-                text: TextSpan(
-                  text: 'Para recuperar a sua password, ',
-                  style: const TextStyle(color: Colors.white),
-                  children: [
-                    TextSpan(
-                      text: 'clique Aqui',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.lightBlueAccent,
-                        decoration: TextDecoration.underline,
+              const SizedBox(height: 16.0),
+              Expanded( // Wrap the Text.rich with Expanded to take full width
+                child: GestureDetector(
+                  onTapDown: (_) {
+                    setState(() {
+                      _isHovering = true;
+                    });
+                  },
+                  onTapCancel: () {
+                    setState(() {
+                      _isHovering = false;
+                    });
+                  },
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PasswordRecoveryPage2(),
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PositiveLogin(),
-                            ),
-                          );
-                        },
+                    );
+                  },
+                  child: Text.rich(
+                    TextSpan(
+                      text: 'Para recuperar a sua password, ',
+                      style: const TextStyle(color: Colors.white),
+                      children: [
+                        TextSpan(
+                          text: 'clique Aqui',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: _isHovering ? Colors.pink : Colors.lightBlueAccent,
+                            decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ],
@@ -145,6 +169,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
 
 class PositiveLogin extends StatelessWidget {
   @override
@@ -163,7 +188,7 @@ class PasswordRecoveryPage extends StatelessWidget {
     return MaterialApp(
       title: 'Password Recovery Page',
       theme: ThemeData(),
-      home: PositiveLogin(),
+      home: PasswordRecoveryPage2(),
     );
   }
 }

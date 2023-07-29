@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'FeedPage.dart';
 import 'Home_PageWetherTest.dart';
 import 'RecoveryPage.dart';
+import 'RecoveryPage2.dart';
 
 void main() {
   runApp(const DomusBuddiesApp());
@@ -17,7 +19,7 @@ class DomusBuddiesApp extends StatelessWidget {
       theme: ThemeData(),
       //home: LoginPage(),
       //home: HomePageWeatherTest(),
-      home: PasswordRecoveryPage(),
+      home: NovidadesPage(),
     );
   }
 }
