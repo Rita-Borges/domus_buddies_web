@@ -37,7 +37,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^22.1.37
   #flutter_datetime_picker: ^2.0.0
   http: ^1.1.0
-
+  universal_html: ^2.0.7
   image_picker: ^1.0.1
   video_player: ^2.7.0
 
@@ -66,8 +66,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/flora.jpg
-    - assets/images/gato_amarelo.jpg
     - assets/images/luna1.jpg
     - assets/images/logo1.png
     - assets/images/logo2.png

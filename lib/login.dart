@@ -1,20 +1,41 @@
+import 'package:domus_buddies/FeedPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-
 import 'RecoveryPage2.dart';
-import 'Registo.dart';
+import 'Keycloack.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+
+class LoginPagev0 extends StatefulWidget {
+  const LoginPagev0({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginPagev0State createState() => _LoginPagev0State();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPagev0State extends State<LoginPagev0> {
   bool _isHovering = false;
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
+  void _handleLogin() async {
+    final String username = _usernameController.text;
+    final String password = _passwordController.text;
+
+    final token = await KeycloakService().authenticate(username, password);
+    bool isAuthenticated = true; // Replace this with the actual authentication result.
+    if (isAuthenticated) {
+      // Navigate to the next page (e.g., DashboardPage).
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NovidadesPage(), // Replace DashboardPage with your desired page.
+        ),
+      );
+    } else {
+      // Show an error message or handle the failed login attempt.
+      // You can use a Snackbar or a Dialog to display the error message.
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +78,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 24.0),
               TextFormField(
+                controller: _usernameController, // Bind the controller to the field
                 style: const TextStyle(color: Colors.white),
-                // Set the text color to white
                 decoration: const InputDecoration(
                   labelText: 'Username',
                   prefixIcon: Icon(Icons.person, color: Colors.white),
@@ -78,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 16.0),
               TextFormField(
+                controller: _passwordController, // Bind the controller to the field
                 style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
                   labelText: 'Password',
@@ -98,19 +120,17 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
               ),
               SizedBox(height: 32.0),
-              ElevatedButton.icon(
-                onPressed: () {
-                  // Handle login button press
-                },
-                icon: Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                ),
-                label: Text(
-                  'login',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
+          ElevatedButton.icon(
+            onPressed: _handleLogin, // Call the _handleLogin method when the button is pressed.
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.white,
+            ),
+            label: Text(
+              'login',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -122,7 +142,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              const SizedBox(height: 16.0),
               const SizedBox(height: 16.0),
               Expanded( // Wrap the Text.rich with Expanded to take full width
                 child: GestureDetector(
@@ -177,7 +196,7 @@ class PositiveLogin extends StatelessWidget {
     return MaterialApp(
       title: 'Move to feedPage',
       theme: ThemeData(),
-      //home: PositiveLogin(),
+      home: NovidadesPage(),
     );
   }
 }

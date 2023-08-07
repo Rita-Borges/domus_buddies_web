@@ -1,6 +1,5 @@
+import 'package:domus_buddies/uploadPage.dart';
 import 'package:flutter/material.dart';
-
-import 'FeedPage2.dart';
 
 class NovidadesPage extends StatelessWidget {
   NovidadesPage({Key? key});
@@ -35,7 +34,7 @@ class NovidadesPage extends StatelessWidget {
               },
             ),
             IconButton(
-              icon: Icon(Icons.account_circle, color: Colors.pink),
+              icon: Icon(Icons.logout, color: Colors.pink),
               onPressed: () {
                 // Handle user profile button press
               },
@@ -243,7 +242,7 @@ class NovidadesPage extends StatelessWidget {
 
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showUploadOptionsBottomSheet(context); // Show the upload options when plus button is pressed
+            _navigateToNewPage(context); // Show the upload options when plus button is pressed
           },
           child: Icon(Icons.add, color: Colors.white),
           backgroundColor: Colors.pink,
@@ -279,41 +278,12 @@ class NovidadesPage extends StatelessWidget {
     );
   }
 
-  void showUploadOptionsBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          color: Colors.pink,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: Icon(Icons.video_library, color: Colors.white),
-                title: Text(
-                  'Upload Video',
-                  style: TextStyle(color: Colors.white), // White text color
-                ),
-                onTap: () {
-                  // Handle upload video action
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.image, color: Colors.white),
-                title: Text(
-                  'Upload Image',
-                  style: TextStyle(color: Colors.white), // White text color
-                ),
-                onTap: () {
-                  // Handle upload image action
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
+  void _navigateToNewPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => UploadPage(), // Replace `NewPage` with the class of your new page
+    ),
+  );
   }
 }

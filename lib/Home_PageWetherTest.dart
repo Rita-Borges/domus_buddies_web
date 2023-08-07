@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'Registo.dart';
 import 'login.dart';
 
+
 class HomePageWeatherTest extends StatefulWidget {
   const HomePageWeatherTest({Key? key}) : super(key: key);
 
@@ -71,7 +72,7 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
   void navigateToLoginPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
+      MaterialPageRoute(builder: (context) => LoginPagev0()),
     );
   }
 
@@ -197,7 +198,7 @@ class LoginPage1 extends StatelessWidget {
     return MaterialApp(
       title: 'Login Page',
       theme: ThemeData(),
-      home: LoginPage(),
+      home: LoginPagev0(),
     );
   }
 }
@@ -208,7 +209,7 @@ class RegisterPage1 extends StatelessWidget {
     return MaterialApp(
       title: 'Registration Page',
       theme: ThemeData(),
-      home: PositiveLogin(),
+      //home: PositiveLogin(),
     );
   }
 }
