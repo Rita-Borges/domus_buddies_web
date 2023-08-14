@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 
 import 'FeedPage.dart';
 import 'Home_PageWetherTest.dart';
-import 'RecoveryPage.dart';
-import 'RecoveryPage2.dart';
+import 'REGISTERKeycloack.dart';
+import 'Registo.dart';
 import 'login.dart';
 import 'uploadPage.dart';
 
-void main() {
+void main() async{
   // Set this to true to enable web-only functionality.
   //setWebEnabledForTesting(true);
   runApp(const DomusBuddiesApp());
+
 }
+
 
 class DomusBuddiesApp extends StatelessWidget {
   const DomusBuddiesApp({super.key});
@@ -23,8 +25,8 @@ class DomusBuddiesApp extends StatelessWidget {
     return MaterialApp(
       title: 'Home Page',
       theme: ThemeData(),
-      home: LoginPagev0(),
-      //home: HomePageWeatherTest(),
+      //home: RegisterPage(),
+      home: HomePageWeatherTest(),
       //home: NovidadesPage(),
       //home: UploadPage(),
     );

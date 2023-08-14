@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
+import 'REGISTERKeycloack.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -13,9 +16,39 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
+
+  final KeycloakServiceRegister keycloak = KeycloakServiceRegister(
+    baseUrl: 'https://lemur-6.cloud-iam.com',
+    realm: 'domusbuddies',
+    clientId: 'domusbuddies-app',
+    clientSecret: 'a8XIyFyT9EpUBqegN2EncuZkgJXTEJfP',
+  );
+
+
+  bool _isAnyFieldEmpty() {
+    return [
+      _firstNameController,
+      _lastNameController,
+      _usernameController,
+      _emailController,
+      _passwordController,
+      _confirmPasswordController
+    ].any((controller) => controller.text.isEmpty);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue.shade200, // Set the AppBar color
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.pink),
+          onPressed: () {
+            Navigator.of(context).pop(); // Navigate back to the previous page
+          },
+        ),
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -28,187 +61,254 @@ class _RegisterPageState extends State<RegisterPage> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(height: 40.0), // Add extra space above the title
-              const Text(
-                'Efetuar Registo ',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Handwritten',
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                //const SizedBox(height: 40.0), // Add extra space above the title
+                const Text(
+                  'Efetuar Registo ',
+                  style: TextStyle(
+                    color: Colors.pink,
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Handwritten',
+                  ),
                 ),
-              ),
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100.0),
-                child: Image.asset(
-                  'assets/images/logo2.png', // Replace with your own image path
-                  // height: 200.0,
-                  width: 130.0,
-                ),
-              ),
-              const SizedBox(height: 16.0), // Add extra space above the title
-              TextField(
-                controller: _firstNameController,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: 'Primeiro Nome',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            Colors.white), // Set the underline color to white
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .pink), // Set the focused underline color to white
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100.0),
+                  child: Image.asset(
+                    'assets/images/logo2.png', // Replace with your own image path
+                    // height: 200.0,
+                    width: 150.0,
                   ),
                 ),
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                controller: _lastNameController,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: 'Último Nome',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            Colors.white), // Set the underline color to white
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .pink), // Set the focused underline color to white
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                controller: _usernameController,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: 'Username',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            Colors.white), // Set the underline color to white
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .pink), // Set the focused underline color to white
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                controller: _emailController,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            Colors.white), // Set the underline color to white
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .pink), // Set the focused underline color to white
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                controller: _passwordController,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            Colors.white), // Set the underline color to white
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .pink), // Set the focused underline color to white
-                  ),
-                ),
-                obscureText: true,
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                controller: _confirmPasswordController,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  labelText: 'Confirma a tua Password',
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            Colors.white), // Set the underline color to white
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .pink), // Set the focused underline color to white
-                  ),
-                ),
-                obscureText: true,
-              ),
-              SizedBox(height: 24.0),
-              ElevatedButton(
-                onPressed: () {
-                  String firstName = _firstNameController.text;
-                  String lastName = _lastNameController.text;
-                  String username = _usernameController.text;
-                  String email = _emailController.text;
-                  String password = _passwordController.text;
-                  String confirmPassword = _confirmPasswordController.text;
-                  // Perform registration logic here
-                  // Example: print the user's information
-                  print('First Name: $firstName');
-                  print('Last Name: $lastName');
-                  print('Username: $username');
-                  print('Email: $email');
-                  print('Password: $password');
-                  print('Confirm Password: $confirmPassword');
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.person_add),
-                    SizedBox(width: 8.0),
-                    Text(
-                      'Registar',
-                      style: TextStyle(color: Colors.white),
+                const SizedBox(height: 16.0), // Add extra space above the title
+                TextField(
+                  controller: _firstNameController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'Primeiro Nome',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                          Colors.white), // Set the underline color to white
                     ),
-                  ],
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.pink,
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .pink), // Set the focused underline color to white
+                    ),
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: _lastNameController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'Último Nome',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                          Colors.white), // Set the underline color to white
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .pink), // Set the focused underline color to white
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: _usernameController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'Username',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                          Colors.white), // Set the underline color to white
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .pink), // Set the focused underline color to white
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: _emailController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                          Colors.white), // Set the underline color to white
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .pink), // Set the focused underline color to white
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: _passwordController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                          Colors.white), // Set the underline color to white
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .pink), // Set the focused underline color to white
+                    ),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: _confirmPasswordController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'Confirma a tua Password',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color:
+                          Colors.white), // Set the underline color to white
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Colors
+                              .pink), // Set the focused underline color to white
+                    ),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 24.0),
+                ElevatedButton(
+                  onPressed: () async {
+
+                    String firstName = _firstNameController.text;
+                    String lastName = _lastNameController.text;
+                    String username = _usernameController.text;
+                    String email = _emailController.text;
+                    String password = _passwordController.text;
+                    String confirmPassword = _confirmPasswordController.text;
+                    // Perform registration logic here
+                    // Example: print the user's information
+                    print('First Name: $firstName');
+                    print('Last Name: $lastName');
+                    print('Username: $username');
+                    print('Email: $email');
+                    print('Password: $password');
+                    print('Confirm Password: $confirmPassword');
+
+                    if (_isAnyFieldEmpty()) {
+                      _showErrorDialog(context, 'Por favor, preencha todos os campos.');
+                      return;
+                    }
+                    // Show the Cupertino-style dialog
+                    _showLocationPermissionDialog(context);
+
+                    final success = await keycloak.registerUser(
+                      username: _usernameController.text,
+                      email: _emailController.text,
+                      firstName: _firstNameController.text,
+                      lastName: _lastNameController.text,
+                      password: _passwordController.text,
+                    );
+
+                    if (success) {
+                      print('User registered successfully!');
+                      // Optionally: navigate to another page or show a success dialog
+                    } else {
+                      _showErrorDialog(context, 'Falha ao registrar usuário.');
+                    }
+
+
+                  },
+                  child: Text(
+                    'Registar',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    primary: Colors.pink,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
+}
+// Function to show Cupertino-style dialog
+void _showLocationPermissionDialog(BuildContext context) {
+  showCupertinoDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return CupertinoAlertDialog(
+        title: Text('Location Permission'),
+        content: Text('Do you allow the application to use your location via GPS?'),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            child: Text('No'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          CupertinoDialogAction(
+            child: Text('Yes'),
+            onPressed: () {
+              // Handle location permission logic here
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void _showErrorDialog(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Erro'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

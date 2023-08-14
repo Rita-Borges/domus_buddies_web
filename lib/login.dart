@@ -1,8 +1,8 @@
 import 'package:domus_buddies/FeedPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'RecoveryPage2.dart';
-import 'Keycloack.dart';
+import 'RecoveryPage.dart';
+import 'LOGINKeycloack.dart';
 
 
 class LoginPagev0 extends StatefulWidget {
