@@ -1,6 +1,5 @@
 import 'package:domus_buddies/uploadPage.dart';
 import 'package:flutter/material.dart';
-
 import 'AppBarGeneric.dart';
 import 'BackgroundGeneric.dart';
 
@@ -14,9 +13,6 @@ class NovidadesPage extends StatelessWidget {
     'Keep it up!',
     'Beautiful picture!',
   ];
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +85,6 @@ class NovidadesPage extends StatelessWidget {
       ),
     );
   }
-
-
 
   Widget buildImageSection(
       BuildContext context, String imagePath, int likes, int commentsCount) {

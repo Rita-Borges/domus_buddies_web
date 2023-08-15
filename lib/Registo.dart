@@ -15,7 +15,6 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
-
   final KeycloakServiceRegister keycloak = KeycloakServiceRegister(
     baseUrl: 'https://lemur-6.cloud-iam.com',
     realm: 'domusbuddies',
