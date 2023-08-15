@@ -1,6 +1,9 @@
 import 'package:domus_buddies/uploadPage.dart';
 import 'package:flutter/material.dart';
 
+import 'AppBarGeneric.dart';
+import 'BackgroundGeneric.dart';
+
 class NovidadesPage extends StatelessWidget {
   NovidadesPage({Key? key});
 
@@ -12,240 +15,141 @@ class NovidadesPage extends StatelessWidget {
     'Beautiful picture!',
   ];
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.lightBlue.shade200,
-          elevation: 0, // Remove app bar shadow
-          centerTitle: true, // Center the title (Novidades) in the app bar
-          actions: [
-            IconButton(
-              icon: Icon(Icons.menu, color: Colors.pink),
-              onPressed: () {
-                // Handle search button press
-              },
+        appBar: CustomAppBar(),
+        body: Stack(
+          children: [
+            GradientBackground(
+              child: Container(
+                padding: EdgeInsets.all(5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      ' Novidades',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink,
+                        fontFamily: 'Handwritten',
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          SizedBox(height: 16),
+                          buildImageSection(
+                              context, 'assets/images/ImageHome.jpeg', 120, 45),
+                          SizedBox(height: 16),
+                          buildImageSection(
+                              context, 'assets/images/luna1.jpg', 95, 30),
+                          SizedBox(height: 16),
+                          buildImageSection(
+                              context, 'assets/images/luna1.jpg', 110, 25),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            IconButton(
-              icon: Icon(Icons.pin_drop, color: Colors.pink),
-              onPressed: () {
-                // Handle notifications button press
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.logout, color: Colors.pink),
-              onPressed: () {
-                // Handle user profile button press
-              },
+            Positioned(
+              bottom: 16, // adjust as needed
+              left: 0,
+              right: 0,
+              child: Center(
+                child: FloatingActionButton(
+                  child: Icon(Icons.add_a_photo_outlined, color: Colors.white),
+                  backgroundColor: Colors.pink,
+
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(28.0),  // Assuming default size of FloatingActionButton, you can adjust as needed
+                      side: BorderSide(color: Colors.white, width: 2.0)
+                  ),
+
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => UploadPage()),
+                    );
+                  },
+                ),
+              ),
             ),
           ],
-          title: Text(
-            'Novidades',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.pink,
-              fontFamily: 'Handwritten',
-            ),
-          ),
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.lightBlue.shade200,
-                Colors.blue.shade600,
-                Colors.indigo.shade900
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          padding: EdgeInsets.all(5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 16),
-              // Center(
-              //   child: Text(
-              //     'Novidades',
-              //     style: TextStyle(
-              //       fontSize: 34,
-              //       fontWeight: FontWeight.bold,
-              //       color: Colors.pink,
-              //       fontFamily: 'Handwritten',
-              //     ),
-              //   ),
-              // ),
-              //SizedBox(height: 24),
-              Container(
-                //height: 200, // Set the desired height for the image
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        'assets/images/ImageHome.jpeg', // Replace with your image path
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+      ),
+    );
+  }
 
-                    Positioned(
-                      bottom: 8,
-                      right: 8,
-                      child: Row(
-                        children: [
-                          Icon(Icons.favorite, color: Colors.pink),
-                          SizedBox(width: 4),
-                          Text(
-                            '120',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(width: 12),
-                          IconButton(
-                            icon: Icon(Icons.comment, color: Colors.pink),
-                            onPressed: () {
-                              _showListBottomSheet(context); // Show the list of comments when the comment icon is pressed
-                            },
-                          ),
-                          SizedBox(width: 4),
-                          Text(
-                            '45',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              // Second Image
-              Container(
-                //height: 200, // Set the desired height for the image
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        'assets/images/luna1.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 8,
-                      right: 8,
-                      child: Row(
-                        children: [
-                          Icon(Icons.favorite, color: Colors.pink),
-                          SizedBox(width: 4),
-                          Text(
-                            '95',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(width: 12),
-                          IconButton(
-                            icon: Icon(Icons.comment, color: Colors.pink),
-                            onPressed: () {
-                              _showListBottomSheet(context);
-                            },
-                          ),
-                          SizedBox(width: 4),
-                          Text(
-                            '30',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              // Second Image
-              Container(
-                //height: 200, // Set the desired height for the image
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        'assets/images/luna1.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 8,
-                      right: 8,
-                      child: Row(
-                        children: [
-                          Icon(Icons.favorite, color: Colors.pink),
-                          SizedBox(width: 4),
-                          Text(
-                            '95',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(width: 12),
-                          IconButton(
-                            icon: Icon(Icons.comment, color: Colors.pink),
-                            onPressed: () {
-                              _showListBottomSheet(context);
-                            },
-                          ),
-                          SizedBox(width: 4),
-                          Text(
-                            '30',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
 
-            ],
-          ),
+
+  Widget buildImageSection(
+      BuildContext context, String imagePath, int likes, int commentsCount) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: Colors.white.withOpacity(0.5),  // change this color to whatever you like
+          width: 1.5,
         ),
-
-
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _navigateToNewPage(context); // Show the upload options when plus button is pressed
-          },
-          child: Icon(Icons.add, color: Colors.white),
-          backgroundColor: Colors.pink,
+      ),
+      elevation: 4,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned(
+              bottom: 8,
+              right: 8,
+              child: Row(
+                children: [
+                  Icon(Icons.favorite, color: Colors.pink),
+                  SizedBox(width: 4),
+                  Text(
+                    '$likes',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 12),
+                  IconButton(
+                    icon: Icon(Icons.comment, color: Colors.pink),
+                    onPressed: () {
+                      _showListBottomSheet(context);
+                    },
+                  ),
+                  SizedBox(width: 4),
+                  Text(
+                    '$commentsCount',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 4),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -256,16 +160,17 @@ class NovidadesPage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return Container(
-          color: Colors.pink, // Pink background for the bottom sheet
+          color: Colors.pink,
           child: ListView.builder(
-            itemCount: comments.length, // Use the comments list length
+            itemCount: comments.length,
             itemBuilder: (BuildContext context, int index) {
               String comment = comments[index];
               return ListTile(
-                tileColor: Colors.white, // White background for each list item
+                tileColor: Colors.white,
                 title: Text(
                   comment,
-                  style: TextStyle(color: Colors.white), // Black text color for each comment
+                  style: TextStyle(
+                      color: Colors.white),
                 ),
                 onTap: () {
                   // Handle comment tap if needed
@@ -277,13 +182,5 @@ class NovidadesPage extends StatelessWidget {
       },
     );
   }
-
-  void _navigateToNewPage(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => UploadPage(), // Replace `NewPage` with the class of your new page
-    ),
-  );
-  }
 }
+
