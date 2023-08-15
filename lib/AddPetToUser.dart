@@ -36,7 +36,7 @@ class _AddPetToUserState extends State<AddPetToUser> {
               const Text(
                 'Adicione o seu Pet ',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.pink,
                   fontSize: 40.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Handwritten',

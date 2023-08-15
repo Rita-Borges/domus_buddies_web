@@ -13,9 +13,9 @@ class _UppdatePageState extends State<UppdatePage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
-  //TextEditingController _moradaRuaController = TextEditingController();
-  //TextEditingController _moradaCodigoPostalController = TextEditingController();
-  //TextEditingController _moradaCidadeController = TextEditingController();
+  TextEditingController _moradaRuaController = TextEditingController();
+  TextEditingController _moradaCodigoPostalController = TextEditingController();
+  TextEditingController _moradaCidadeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +49,7 @@ class _UppdatePageState extends State<UppdatePage> {
             children: [
               //const SizedBox(height: 40.0), // Add extra space above the title
               const Text(
-                'Efetuar Registo ',
+                'Atualizar perfil ',
                 style: TextStyle(
                   color: Colors.pink,
                   fontSize: 40.0,
@@ -183,7 +183,7 @@ class _UppdatePageState extends State<UppdatePage> {
                 obscureText: true,
               ),
               SizedBox(height: 16.0),
-              /*TextField(
+              TextField(
                 controller: _moradaRuaController,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -241,7 +241,7 @@ class _UppdatePageState extends State<UppdatePage> {
                   ),
                 ),
                 obscureText: true,
-              ),*/
+              ),
               SizedBox(height: 24.0),
           ElevatedButton(
             onPressed: () {
@@ -251,9 +251,9 @@ class _UppdatePageState extends State<UppdatePage> {
               String email = _emailController.text;
               String password = _passwordController.text;
               String confirmPassword = _confirmPasswordController.text;
-              //String MoradaRua = _moradaRuaController.text;
-              //String MoradaCodigoPostal = _moradaCodigoPostalController.text;
-              //String MoradaCidade = _moradaCidadeController.text;
+              String MoradaRua = _moradaRuaController.text;
+              String MoradaCodigoPostal = _moradaCodigoPostalController.text;
+              String MoradaCidade = _moradaCidadeController.text;
 
               // Perform registration logic here
               // Example: print the user's information
@@ -263,15 +263,15 @@ class _UppdatePageState extends State<UppdatePage> {
               print('Email: $email');
               print('Password: $password');
               print('Confirm Password: $confirmPassword');
-              //print('Confirm Street name: $MoradaRua');
-              //print('Confirm codigo postal: $MoradaCodigoPostal');
-              //print('Confirm city: $MoradaCidade');
+              print('Confirm Street name: $MoradaRua');
+              print('Confirm codigo postal: $MoradaCodigoPostal');
+              print('Confirm city: $MoradaCidade');
 
               // Show the Cupertino-style dialog
               _showLocationPermissionDialog(context);
             },
             child: Text(
-              'Registar',
+              'Atualizar',
               style: TextStyle(color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(

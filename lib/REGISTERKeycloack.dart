@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'SendRegister.dart';
+import 'SendNewUserInfo.dart';
 
 class KeycloakServiceRegister {
 final String baseUrl;
@@ -82,7 +82,7 @@ final newUser = User(
   //password: 'securePassword123',
 );
 
-createUser(newUser);
+createUser(newUser, accessToken);
 return response.statusCode == 201;
 }
 }
