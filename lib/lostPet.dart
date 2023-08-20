@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'AppBarGeneric.dart';
 import 'BackgroundGeneric.dart';
 
-class SearchServices extends StatelessWidget {
-  SearchServices({Key? key});
+class LostPetPage extends StatelessWidget {
+  LostPetPage({Key? key});
 
 
   @override
@@ -22,7 +22,7 @@ class SearchServices extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      ' Serviços',
+                      ' Lost Pet',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,

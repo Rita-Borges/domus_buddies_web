@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'AppBarGeneric.dart';
 import 'BackgroundGeneric.dart';
 

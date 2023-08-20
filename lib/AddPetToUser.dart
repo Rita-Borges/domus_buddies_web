@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'AppBarGeneric.dart';
+import 'BackgroundGeneric.dart';
 
 class AddPetToUser extends StatefulWidget {
   @override
@@ -15,24 +17,13 @@ class _AddPetToUserState extends State<AddPetToUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.lightBlue.shade200,
-              Colors.blue.shade600,
-              Colors.indigo.shade900
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+      appBar: CustomAppBar(),
+      body: GradientBackground(
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 40.0), // Add extra space above the title
               const Text(
                 'Adicione o seu Pet ',
                 style: TextStyle(

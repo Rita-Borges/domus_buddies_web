@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'AppBarGeneric.dart';
+
 class UppdatePage extends StatefulWidget {
   @override
   _UppdatePageState createState() => _UppdatePageState();
@@ -11,24 +13,16 @@ class _UppdatePageState extends State<UppdatePage> {
   TextEditingController _lastNameController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+ // TextEditingController _passwordController = TextEditingController();
+  //TextEditingController _confirmPasswordController = TextEditingController();
   TextEditingController _moradaRuaController = TextEditingController();
   TextEditingController _moradaCodigoPostalController = TextEditingController();
   TextEditingController _moradaCidadeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlue.shade200, // Set the AppBar color
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.pink),
-          onPressed: () {
-            Navigator.of(context).pop(); // Navigate back to the previous page
-          },
-        ),
-      ),
+    return MaterialApp(
+        home: Scaffold(
+        appBar: CustomAppBar(),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -143,7 +137,7 @@ class _UppdatePageState extends State<UppdatePage> {
                 ),
               ),
               SizedBox(height: 16.0),
-              TextField(
+             /* TextField(
                 controller: _passwordController,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -181,7 +175,7 @@ class _UppdatePageState extends State<UppdatePage> {
                   ),
                 ),
                 obscureText: true,
-              ),
+              ),*/
               SizedBox(height: 16.0),
               TextField(
                 controller: _moradaRuaController,
@@ -249,8 +243,8 @@ class _UppdatePageState extends State<UppdatePage> {
               String lastName = _lastNameController.text;
               String username = _usernameController.text;
               String email = _emailController.text;
-              String password = _passwordController.text;
-              String confirmPassword = _confirmPasswordController.text;
+             // String password = _passwordController.text;
+              //String confirmPassword = _confirmPasswordController.text;
               String MoradaRua = _moradaRuaController.text;
               String MoradaCodigoPostal = _moradaCodigoPostalController.text;
               String MoradaCidade = _moradaCidadeController.text;
@@ -261,14 +255,14 @@ class _UppdatePageState extends State<UppdatePage> {
               print('Last Name: $lastName');
               print('Username: $username');
               print('Email: $email');
-              print('Password: $password');
-              print('Confirm Password: $confirmPassword');
+              //print('Password: $password');
+              //print('Confirm Password: $confirmPassword');
               print('Confirm Street name: $MoradaRua');
               print('Confirm codigo postal: $MoradaCodigoPostal');
               print('Confirm city: $MoradaCidade');
 
               // Show the Cupertino-style dialog
-              _showLocationPermissionDialog(context);
+              //_showLocationPermissionDialog(context);
             },
             child: Text(
               'Atualizar',
@@ -287,33 +281,8 @@ class _UppdatePageState extends State<UppdatePage> {
               ),
             ),
            ),
+        ),
     );
   }
 }
 // Function to show Cupertino-style dialog
-void _showLocationPermissionDialog(BuildContext context) {
-  showCupertinoDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return CupertinoAlertDialog(
-        title: Text('Location Permission'),
-        content: Text('Do you allow the application to use your location via GPS?'),
-        actions: <Widget>[
-          CupertinoDialogAction(
-            child: Text('No'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          CupertinoDialogAction(
-            child: Text('Yes'),
-            onPressed: () {
-              // Handle location permission logic here
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}

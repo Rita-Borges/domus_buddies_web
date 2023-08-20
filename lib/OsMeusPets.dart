@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'AppBarGeneric.dart';
 import 'BackgroundGeneric.dart';
 
-class SearchServices extends StatelessWidget {
-  SearchServices({Key? key});
+class osMeusPage extends StatelessWidget {
+  osMeusPage({Key? key});
 
 
   @override
@@ -22,7 +22,7 @@ class SearchServices extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      ' Serviços',
+                      'As Minhas Publicações ',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,

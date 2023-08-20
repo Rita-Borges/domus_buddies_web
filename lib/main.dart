@@ -26,7 +26,7 @@ class DomusBuddiesApp extends StatelessWidget {
     return MaterialApp(
       title: 'Home Page',
       theme: ThemeData(),
-      home: UploadPage(),
+      home: NovidadesPage(),
       //home: HomePageWeatherTest(),
       //home: AdotePage(),
       //home: RegisterPage(),

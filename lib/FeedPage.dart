@@ -115,7 +115,7 @@ class NovidadesPage extends StatelessWidget {
               right: 8,
               child: Row(
                 children: [
-                  Icon(Icons.favorite, color: Colors.pink),
+                  Icon(Icons.favorite_outline_sharp, color: Colors.pink),
                   SizedBox(width: 4),
                   Text(
                     '$likes',
@@ -126,7 +126,7 @@ class NovidadesPage extends StatelessWidget {
                   ),
                   SizedBox(width: 12),
                   IconButton(
-                    icon: Icon(Icons.comment, color: Colors.pink),
+                    icon: Icon(Icons.comment_outlined, color: Colors.pink),
                     onPressed: () {
                       _showListBottomSheet(context);
                     },
