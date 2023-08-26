@@ -1,59 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'AppBarGeneric.dart';
 import 'BackgroundGeneric.dart';
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 
-class UppdatePage extends StatefulWidget {
+class UppdatePage1 extends StatefulWidget {
   @override
-  _UppdatePageState createState() => _UppdatePageState();
+  _UppdatePage1State createState() => _UppdatePage1State();
 }
 
-class ImageFromFile extends StatefulWidget {
-  final File imageFile;
-
-  ImageFromFile({required this.imageFile, Key? key}) : super(key: key);
-
-  @override
-  _ImageFromFileState createState() => _ImageFromFileState();
-}
-
-class _ImageFromFileState extends State<ImageFromFile> {
-  UniqueKey key = UniqueKey();
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.file(
-      widget.imageFile,
-      key: key,
-      width: 150.0,
-      height: 150.0,
-      fit: BoxFit.cover,
-    );
-  }
-}
-
-class _UppdatePageState extends State<UppdatePage> {
+class _UppdatePage1State extends State<UppdatePage1> {
   TextEditingController _firstNameController = TextEditingController();
   TextEditingController _lastNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _moradaRuaController = TextEditingController();
   TextEditingController _moradaCodigoPostalController = TextEditingController();
   TextEditingController _moradaCidadeController = TextEditingController();
-  File? _selectedImage;
-
-  Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      setState(() {
-        _selectedImage = File(image.path);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -68,6 +30,7 @@ class _UppdatePageState extends State<UppdatePage> {
               children: [
                 Column(
                   children: [
+
                     //const SizedBox(height: 40.0), // Add extra space above the title
                     const Text(
                       'Atualizar perfil ',
@@ -77,45 +40,17 @@ class _UppdatePageState extends State<UppdatePage> {
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Handwritten',
                       ),
-                      textAlign: TextAlign.center, // This line centers the text
+                      textAlign: TextAlign.center,  // This line centers the text
                     ),
 
-                    Stack(
-                      children: [
-                        GestureDetector(
-                          onTap: _pickImage,
-                          child: ClipOval(
-                            child: Opacity(
-                              opacity: 1.0,
-                              child: _selectedImage != null
-                                  ? ImageFromFile(imageFile: _selectedImage!)
-                                  : Image.asset(
-                                'assets/images/logo2.png',
-                                width: 150.0,
-                                height: 150.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 8,
-                          bottom: 8,
-                          child: Tooltip(
-                            message: "Change Picture",
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white54,
-                              child: IconButton(
-                                icon: Icon(Icons.edit, color: Colors.pink),
-                                onPressed: _pickImage,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    ClipOval(
+                      child: Image.asset(
+                        'assets/images/logo2.png',
+                        width: 150.0,
+                        height: 150.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-
-
                     SizedBox(height: 16.0),
                     TextField(
                       controller: _firstNameController,
@@ -125,8 +60,8 @@ class _UppdatePageState extends State<UppdatePage> {
                         labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Colors
-                                  .white), // Set the underline color to white
+                              color:
+                              Colors.white), // Set the underline color to white
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -144,8 +79,8 @@ class _UppdatePageState extends State<UppdatePage> {
                         labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Colors
-                                  .white), // Set the underline color to white
+                              color:
+                              Colors.white), // Set the underline color to white
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -163,8 +98,8 @@ class _UppdatePageState extends State<UppdatePage> {
                         labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Colors
-                                  .white), // Set the underline color to white
+                              color:
+                              Colors.white), // Set the underline color to white
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -182,8 +117,8 @@ class _UppdatePageState extends State<UppdatePage> {
                         labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Colors
-                                  .white), // Set the underline color to white
+                              color:
+                              Colors.white), // Set the underline color to white
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -202,8 +137,8 @@ class _UppdatePageState extends State<UppdatePage> {
                         labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Colors
-                                  .white), // Set the underline color to white
+                              color:
+                              Colors.white), // Set the underline color to white
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -222,8 +157,8 @@ class _UppdatePageState extends State<UppdatePage> {
                         labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Colors
-                                  .white), // Set the underline color to white
+                              color:
+                              Colors.white), // Set the underline color to white
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -243,8 +178,7 @@ class _UppdatePageState extends State<UppdatePage> {
                           String lastName = _lastNameController.text;
                           String email = _emailController.text;
                           String MoradaRua = _moradaRuaController.text;
-                          String MoradaCodigoPostal =
-                              _moradaCodigoPostalController.text;
+                          String MoradaCodigoPostal = _moradaCodigoPostalController.text;
                           String MoradaCidade = _moradaCidadeController.text;
 
                           // Perform registration logic here
@@ -265,8 +199,7 @@ class _UppdatePageState extends State<UppdatePage> {
                           style: TextStyle(color: Colors.white),
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 12),
+                          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                           primary: Colors.pink,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24),
@@ -276,11 +209,13 @@ class _UppdatePageState extends State<UppdatePage> {
                     ),
                   ],
                 ),
+
               ],
             ),
           ),
         ),
       ),
+
     );
   }
 }

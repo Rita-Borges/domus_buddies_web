@@ -1,10 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'BackgroundGeneric.dart';
 import 'REGISTERKeycloack.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
+}
+
+class ImageFromFile extends StatefulWidget {
+  final File imageFile;
+
+  ImageFromFile({required this.imageFile, Key? key}) : super(key: key);
+
+  @override
+  _ImageFromFileState createState() => _ImageFromFileState();
+}
+
+class _ImageFromFileState extends State<ImageFromFile> {
+  UniqueKey key = UniqueKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.file(
+      widget.imageFile,
+      key: key,
+      width: 150.0,
+      height: 150.0,
+      fit: BoxFit.cover,
+    );
+  }
 }
 
 class _RegisterPageState extends State<RegisterPage> {
@@ -14,6 +41,19 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
+  File? _selectedImage;
+
+  Future<void> _pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _selectedImage = File(image.path);
+      });
+    }
+  }
+
 
   final KeycloakServiceRegister keycloak = KeycloakServiceRegister(
     baseUrl: 'https://lemur-6.cloud-iam.com',
@@ -47,18 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
           },
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.lightBlue.shade200,
-              Colors.blue.shade600,
-              Colors.indigo.shade900
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+      body: GradientBackground(
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
@@ -77,13 +106,43 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100.0),
-                        child: Image.asset(
-                          'assets/images/logo2.png',
-                          width: 150.0,
-                        ),
+                      Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: _pickImage,
+                            child: ClipOval(
+                              child: Opacity(
+                                opacity: 1.0,
+                                child: _selectedImage != null
+                                    ? ImageFromFile(imageFile: _selectedImage!)
+                                    : Image.asset(
+                                  'assets/images/logo2.png',
+                                  width: 150.0,
+                                  height: 150.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 8,
+                            bottom: 8,
+                            child: Tooltip(
+                              message: "Change Picture",
+                              child: CircleAvatar(
+                                backgroundColor: Colors.white54,
+                                child: IconButton(
+                                  icon: Icon(Icons.edit, color: Colors.pink),
+                                  onPressed: _pickImage,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+
+
+
                       const SizedBox(height: 16.0),
                       TextField(
                         controller: _firstNameController,

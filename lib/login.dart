@@ -1,6 +1,7 @@
 import 'package:domus_buddies/FeedPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'BackgroundGeneric.dart';
 import 'RecoveryPage.dart';
 import 'LOGINKeycloack.dart';
 
@@ -38,20 +39,20 @@ class _LoginPagev0State extends State<LoginPagev0> {
   }
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.lightBlue.shade200,
-              Colors.blue.shade600,
-              Colors.indigo.shade900
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue.shade200, // Set the background color to lightBlue.shade200
+        elevation: 0, // Remove shadow
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.pink),
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous page
+          },
         ),
+      ),
+      body: GradientBackground(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

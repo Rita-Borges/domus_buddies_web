@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<void> createUser(User user, String token) async {
-  final url = 'http://infomanager.domusbuddies.eu:8080/api/v1/user/create';
+  final url = 'http://domusbuddies.eu:8080/api/v1/user/create';
 
   final response = await http.post(
     Uri.parse(url),
