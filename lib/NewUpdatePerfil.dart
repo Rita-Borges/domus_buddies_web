@@ -60,12 +60,12 @@ class _UppdatePageState extends State<UppdatePage> {
       home: Scaffold(
         appBar: CustomAppBar(),
         body: GradientBackground(
-          // child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: ListView( // <-- Here's the ListView
               children: [
+            Column(
+            children: [
                 Column(
                   children: [
                     //const SizedBox(height: 40.0), // Add extra space above the title
@@ -278,8 +278,10 @@ class _UppdatePageState extends State<UppdatePage> {
                 ),
               ],
             ),
+                  ],
           ),
         ),
+      ),
       ),
     );
   }

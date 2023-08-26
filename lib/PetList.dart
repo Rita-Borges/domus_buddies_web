@@ -60,7 +60,8 @@ class MyPetsListPage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AddPetToUser()),
+                      MaterialPageRoute
+                        (builder: (context) => AddPetToUser()),
                     );
                   },
                   child: Container(
@@ -104,99 +105,106 @@ class MyPetsListPage extends StatelessWidget {
 
   Widget buildImageSection(
       BuildContext context, String imagePath, int likes, int commentsCount) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 20.0),
-          child: Text(
-            'Luna',
-            style: TextStyle(
-              color: Colors.pink,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: Colors.white.withOpacity(0.5),
+          width: 1.5,
         ),
-        const SizedBox(height: 8),
-        Card(
-          shape: RoundedRectangleBorder(
+      ),
+      elevation: 4,
+      child: Stack(
+        children: [
+          ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            side: BorderSide(
-              color: Colors.white.withOpacity(0.5),
-              width: 1.5,
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
             ),
           ),
-          elevation: 4,
-          child: Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                ),
+          const Positioned(
+            top: 10,  // positioning Luna text at the top of the image
+            left: 10,  // left position
+            child: Text(
+              'Luna',
+              style: TextStyle(
+                color: Colors.pink,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-             ]
+            ),
           ),
-        ),
-        Positioned(
-          bottom: 10,  // Keep the icons at the bottom.
-          right: 10,  // Move the icons to the right.
-          child: Row(
-            children: [
-              // Icon to navigate to the Lost Pet Page
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LostPetPage()),
-                  );
-                },
-                child: const Icon(
-                  Icons.vaccines_outlined, // You might want to replace this icon to better match its function
-                  color: Colors.pink,
-                ),
-              ),
-              const SizedBox(width: 8),  // Space after the icon
-              // Text field after the vaccine icon
-              Text(
-                'Registo veterinário',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 16),  // Space between the text and the next icon
-              // Icon to navigate to the Vet Registration Page
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
+          Positioned(
+            bottom: 10,  // Keep the icons at the bottom.
+            right: 10,  // Move the icons to the right.
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => VetRegisterPage())
-                  );
-                },
-                child: const Icon(
-                  Icons.search, // You might want to replace this icon to better match its function
-                  color: Colors.pink,
+                          //builder: (context) => LostPetPage()),
+                        builder: (context) => VetRegisterPage())
+                    );
+                  },
+                   child:  Container(
+                      padding: const EdgeInsets.all(4.0), // Adjust padding as needed
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.pink, width: 2.0), // Pink border
+                        shape: BoxShape.circle, // Make it circular
+                      ),
+                      child: const Icon(
+                        Icons.vaccines_outlined,
+                        color: Colors.pink,
+                      ),
+                    )
                 ),
-              ),
-              const SizedBox(width: 8),  // Space after the icon
-              // Text field after the vaccine icon
-              Text(
-                'Pet Perdido',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                    const SizedBox(width: 8),
+                const Text(
+                  'Registo veterinário',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 16),
-            ],
+                const SizedBox(width: 16),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LostPetPage()),
+                            //builder: (context) => VetRegisterPage())
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4.0), // Adjust padding as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.pink, width: 2.0), // Pink border
+                      shape: BoxShape.circle, // Make it circular
+                    ),
+                    child: Icon(
+                      Icons.search,
+                      color: Colors.pink,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Pet Perdido',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 16),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

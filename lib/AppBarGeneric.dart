@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'FeedPage.dart';
 import 'Home_PageWetherTest.dart';
-import 'NEWSevices.dart';
+import 'sevicos.dart';
 import 'NewAdoption.dart';
 import 'NewUpdatePerfil.dart';
 import 'OsMeusPets.dart';

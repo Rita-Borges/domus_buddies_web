@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'AppBarGeneric.dart';
 import 'BackgroundGeneric.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
+import 'NewUpdatePerfil.dart';
 
 class AddPetToUser extends StatefulWidget {
   @override
@@ -13,6 +17,18 @@ class _AddPetToUserState extends State<AddPetToUser> {
   TextEditingController _especieController = TextEditingController();
   TextEditingController _breedController = TextEditingController();
   DateTime? _selectedDate;
+  File? _selectedImage;
+
+  Future<void> _pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _selectedImage = File(image.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +50,39 @@ class _AddPetToUserState extends State<AddPetToUser> {
                 ),
               ),
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100.0),
-                child: Image.asset(
-                  'assets/images/logo2.png', // Replace with your own image path
-                  width: 130.0,
-                ),
+              Stack(
+                children: [
+                  GestureDetector(
+                    onTap: _pickImage,
+                    child: ClipOval(
+                      child: Opacity(
+                        opacity: 1.0,
+                        child: _selectedImage != null
+                            ? ImageFromFile(imageFile: _selectedImage!)
+                            : Image.asset(
+                          'assets/images/logo2.png',
+                          width: 150.0,
+                          height: 150.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 8,
+                    bottom: 8,
+                    child: Tooltip(
+                      message: "Change Picture",
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white54,
+                        child: IconButton(
+                          icon: Icon(Icons.edit, color: Colors.pink),
+                          onPressed: _pickImage,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
               const SizedBox(height: 16.0), // Add extra space above the title
