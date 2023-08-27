@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'AppBarGeneric.dart';
 import 'BackgroundGeneric.dart';
 
-class osMeusPage extends StatelessWidget {
-  osMeusPage({Key? key});
-
+class OsMeusPage extends StatelessWidget {
+  OsMeusPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +15,12 @@ class osMeusPage extends StatelessWidget {
           children: [
             GradientBackground(
               child: Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'As Minhas Publicações ',
                       style: TextStyle(
                         fontSize: 30,
@@ -33,10 +32,10 @@ class osMeusPage extends StatelessWidget {
                     Expanded(
                       child: ListView(
                         children: [
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           buildImageSection(
                               context, 'assets/images/luna1.jpg', 95, 30),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           buildImageSection(
                               context, 'assets/images/luna1.jpg', 110, 25),
                         ],
@@ -47,27 +46,18 @@ class osMeusPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 16, // adjust as needed
-              left: 0,
-              right: 0,
-              child: Center(
-                child: FloatingActionButton(
-                  child: Icon(Icons.add_a_photo_outlined, color: Colors.white),
-                  backgroundColor: Colors.pink,
-
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28.0),  // Assuming default size of FloatingActionButton, you can adjust as needed
-                      side: BorderSide(color: Colors.white, width: 2.0)
-                  ),
-
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => UploadPage()),
-                    );
-                  },
-                ),
+              bottom: 16,  // adjust as needed
+              right: 16,  // adjust as needed
+              child: FloatingActionButton(
+                backgroundColor: Colors.pink,
+                elevation: 5.0,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UploadPage()),
+                  );
+                },
+                child: const Icon(Icons.add_a_photo_outlined, color: Colors.white),
               ),
             ),
           ],
@@ -100,7 +90,6 @@ class osMeusPage extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-
           ],
         ),
       ),

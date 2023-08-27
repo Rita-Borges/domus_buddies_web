@@ -260,7 +260,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         obscureText: true,
                       ),
                       SizedBox(height: 24.0),
-                      ElevatedButton.icon(
+                Container(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
                         onPressed: () async {
                           String firstName = _firstNameController.text;
                           String lastName = _lastNameController.text;
@@ -300,19 +302,21 @@ class _RegisterPageState extends State<RegisterPage> {
                           }
 
                         },
-                        icon: Icon(Icons.person_add, color: Colors.white), // This is the icon for registering.
+
+
+                        icon: Icon(Icons.person_add, color: Colors.white),
                         label: Text(
                           'Registar',
                           style: TextStyle(color: Colors.white),
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                           backgroundColor: Colors.pink,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
-                      ),
+                      )
+                ),
                     ],
                   ),
                 ),

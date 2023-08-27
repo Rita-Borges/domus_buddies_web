@@ -57,27 +57,18 @@ class NovidadesPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 16, // adjust as needed
-              left: 0,
-              right: 0,
-              child: Center(
-                child: FloatingActionButton(
-                  child: Icon(Icons.add_a_photo_outlined, color: Colors.white),
-                  backgroundColor: Colors.pink,
-
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28.0),  // Assuming default size of FloatingActionButton, you can adjust as needed
-                      side: BorderSide(color: Colors.white, width: 2.0)
-                  ),
-
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => UploadPage()),
-                    );
-                  },
-                ),
+              bottom: 16,  // adjust as needed
+              right: 16,  // adjust as needed
+              child: FloatingActionButton(
+                backgroundColor: Colors.pink,
+                elevation: 5.0,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UploadPage()),
+                  );
+                },
+                child: const Icon(Icons.add_a_photo_outlined, color: Colors.white),
               ),
             ),
           ],

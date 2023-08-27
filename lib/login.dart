@@ -121,24 +121,27 @@ class _LoginPagev0State extends State<LoginPagev0> {
                 obscureText: true,
               ),
               SizedBox(height: 32.0),
-          ElevatedButton.icon(
-            onPressed: _handleLogin, // Call the _handleLogin method when the button is pressed.
-            icon: Icon(
-              Icons.account_circle,
-              color: Colors.white,
-            ),
-            label: Text(
-              'login',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
+              SizedBox(
+                width: double.infinity,  // Set width to full screen
+                height: 50.0,  // Set a fixed height for the button
+                child: ElevatedButton(
+                  onPressed: _handleLogin,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pink,  // Set the color of the button to pink
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),  // Square shape
+                    ),
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.pink,
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center, // Center align the Row's children
+                    children: [
+                      Icon(Icons.account_circle, color: Colors.white),  // Search Icon
+                      SizedBox(width: 10),  // Spacing between the icon and text
+                      Text(
+                        'login',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,),  // White text color
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'AddPetToUser.dart';
 import 'AppBarGeneric.dart';
 import 'BackgroundGeneric.dart';
-import 'NEWRegVeterinario.dart';
+import 'registo_veterinario.dart';
 import 'lostPet.dart';
 
 class MyPetsListPage extends StatelessWidget {

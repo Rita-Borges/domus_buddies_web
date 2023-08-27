@@ -150,11 +150,11 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.pink,
+                        backgroundColor: Colors.pink,
                         padding:
                             EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),
@@ -173,11 +173,11 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.pink,
+                        backgroundColor: Colors.pink,
                         padding:
                             EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),

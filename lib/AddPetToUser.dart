@@ -4,7 +4,7 @@ import 'BackgroundGeneric.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-import 'NewUpdatePerfil.dart';
+import 'update_perfil.dart';
 
 class AddPetToUser extends StatefulWidget {
   @override
@@ -18,6 +18,12 @@ class _AddPetToUserState extends State<AddPetToUser> {
   TextEditingController _breedController = TextEditingController();
   DateTime? _selectedDate;
   File? _selectedImage;
+  String? _selectedEspecie;
+  String? _selectedRaca;
+
+  final List<String> _especies = ['Dog', 'Cat', 'Bird', 'Fish'];
+  final List<String> _racas = ['Bulldog', 'Siamese', 'Parrot', 'Goldfish'];
+
 
   Future<void> _pickImage() async {
     final ImagePicker _picker = ImagePicker();
@@ -126,45 +132,59 @@ class _AddPetToUserState extends State<AddPetToUser> {
               ),
 
               SizedBox(height: 16.0),
-              TextField(
-                controller: _especieController,
+              DropdownButtonFormField(
+                value: _selectedEspecie,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Espécie',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.pink,
-                    ),
+                    borderSide: BorderSide(color: Colors.pink),
                   ),
                 ),
+                items: _especies.map((String value) {
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Text(value, style: TextStyle(color: Colors.pink)), // Added style here
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedEspecie = value as String?;
+                  });
+                },
               ),
 
+
               SizedBox(height: 16.0),
-              TextField(
-                controller: _breedController,
+              DropdownButtonFormField(
+                value: _selectedRaca,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Raça',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.pink,
-                    ),
+                    borderSide: BorderSide(color: Colors.pink),
                   ),
                 ),
+                items: _racas.map((String value) {
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Text(value, style: TextStyle(color: Colors.pink)), // Added style here
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedRaca = value as String?;
+                  });
+                },
               ),
-
               SizedBox(height: 16.0),
               InkWell(
                 onTap: () {
@@ -205,8 +225,8 @@ class _AddPetToUserState extends State<AddPetToUser> {
                 onPressed: () {
                   String name = _nameController.text;
                   String ship = _shipController.text;
-                  String especie = _especieController.text;
-                  String breed = _breedController.text;
+                  String especie = _selectedEspecie ?? '';
+                  String breed = _selectedRaca ?? '';
                   String birthday = _selectedDate != null
                       ? _selectedDate.toString().split(' ')[0]
                       : '';

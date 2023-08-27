@@ -6,7 +6,7 @@ import 'AddPetToUser.dart';
 import 'FeedPage.dart';
 import 'Home_PageWetherTest.dart';
 import 'NewAdoption.dart';
-import 'NewUpdatePerfil.dart';
+import 'update_perfil.dart';
 import 'REGISTERKeycloack.dart';
 import 'Registo.dart';
 import 'login.dart';
