@@ -1,7 +1,5 @@
 import 'package:domus_buddies/get_keycloack_token.dart';
-import 'package:domus_buddies/update_get_user_info_request.dart';
 import 'package:domus_buddies/update_user_info_request.dart';
-import 'package:domus_buddies/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'AppBarGeneric.dart';
@@ -9,13 +7,11 @@ import 'BackgroundGeneric.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-import 'FeedPage.dart';
-
-class UpdateProfilePage extends StatefulWidget {
-  const UpdateProfilePage({super.key});
+class UpdateProfilePage1 extends StatefulWidget {
+  const UpdateProfilePage1({super.key});
 
   @override
-  _UpdateProfilePageState createState() => _UpdateProfilePageState();
+  _UpdateProfilePage1State createState() => _UpdateProfilePage1State();
 }
 
 class ImageFromFile extends StatefulWidget {
@@ -42,7 +38,7 @@ class _ImageFromFileState extends State<ImageFromFile> {
   }
 }
 
-class _UpdateProfilePageState extends State<UpdateProfilePage> {
+class _UpdateProfilePage1State extends State<UpdateProfilePage1> {
   TextEditingController _usernameController = TextEditingController();
   //TextEditingController _birthDateController = TextEditingController();
   TextEditingController _firstNameController = TextEditingController();
@@ -136,39 +132,8 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
       });
     }
   }
-  //late Map<String, dynamic> _userData;
 
   @override
-  void initState() {
-    super.initState();
-    fetchUserData(); // Call your GET request function here
-  }
-
-  Future<void> fetchUserData() async {
-    final accessTokenProvider =
-    Provider.of<FetchUserData>(context, listen: false);
-    String? accessToken = accessTokenProvider.accessToken;
-    String? loggedInUsername = UserSession.getLoggedInUsername(); // Get the logged-in username
-
-    if (accessToken != null && loggedInUsername != null) {
-      try {
-        Map<String, dynamic> userData = await getUserInfo(loggedInUsername, accessToken); // Use the logged-in username
-
-        setState(() {
-          _usernameController.text = loggedInUsername;
-          _firstNameController.text = userData['firstName'] ?? '';
-          _lastNameController.text = userData['lastName'] ?? '';
-          _emailController.text = userData['email'] ?? '';
-          // ... (other fields)
-        });
-      } catch (error) {
-        print('Error fetching user data: $error');
-      }
-    } else {
-      print('Failed to get access token or logged-in username.');
-    }
-  }
-
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -371,9 +336,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                             ),
                           ),
                           const SizedBox(height: 24.0),
+
                           SizedBox(
                             width: double.infinity,
-                            child:  ElevatedButton.icon(
+                            child: ElevatedButton.icon(
                               onPressed: () async {
                                 if (_isAnyFieldEmpty()) {
                                   print("Please fill all the required fields.");
@@ -395,18 +361,21 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                                 );
 
                                 // Get the token using the existing KeycloakServicePut object
-                                final accessTokenProvider = Provider.of<FetchUserData>(context, listen: false);
-                                String? accessToken = accessTokenProvider.accessToken;
+                                final accessTokenProvider =
+                                    Provider.of<FetchUserData>(context,
+                                        listen: false);
+                                String? accessToken =
+                                    accessTokenProvider.accessToken;
 
                                 if (accessToken != null) {
                                   // Perform the PUT request to update user
                                   await updateUser(user, accessToken);
-                                  _showSuccessDialog(); // Show the success dialog
                                 } else {
                                   print("Failed to get access token.");
                                 }
                               },
-                              icon: Icon(Icons.person_outlined, color: Colors.white),
+                              icon: Icon(Icons.person_outlined,
+                                  color: Colors.white),
                               label: Text(
                                 'Atualizar',
                                 style: TextStyle(color: Colors.white),
@@ -429,30 +398,4 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
       ),
     );
   }
-  Future<void> _showSuccessDialog() async {
-    await showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Success'),
-          content: Text('User information updated successfully!'),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                // Navigate to the NovidadesPage
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => NovidadesPage()),
-                );
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-  }
-
-
+}

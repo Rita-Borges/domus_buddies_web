@@ -6,7 +6,7 @@ import 'sevicos.dart';
 import 'NewAdoption.dart';
 import 'update_perfil.dart';
 import 'Os_meus_pets.dart';
-import 'PetList.dart';
+import 'pet_list.dart';
 
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -179,7 +179,7 @@ class CustomAppBarState extends State<CustomAppBar> {
             if (selectedValue != null) {
               switch (selectedValue) {
                 case 0:
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => UppdatePage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateProfilePage()));
                   break;
 
                 case 2:

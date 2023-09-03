@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'BackgroundGeneric.dart';
 import 'RecoveryPage.dart';
-import 'LOGINKeycloack.dart';
+import 'login_keycloack.dart';
 
 
 class LoginPagev0 extends StatefulWidget {
@@ -22,7 +22,7 @@ class _LoginPagev0State extends State<LoginPagev0> {
     final String username = _usernameController.text;
     final String password = _passwordController.text;
 
-    final token = await KeycloakService().authenticate(username, password);
+    final token = await KeycloakService().authenticate(context, username, password);
     bool isAuthenticated = true; // Replace this with the actual authentication result.
     if (isAuthenticated) {
       // Navigate to the next page (e.g., DashboardPage).

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'BackgroundGeneric.dart';
-import 'REGISTERKeycloack.dart';
+import 'register_keycloack.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
@@ -54,14 +54,12 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-
   final KeycloakServiceRegister keycloak = KeycloakServiceRegister(
     baseUrl: 'https://lemur-6.cloud-iam.com',
     realm: 'domusbuddies',
     clientId: 'domusbuddies-app',
     clientSecret: 'a8XIyFyT9EpUBqegN2EncuZkgJXTEJfP',
   );
-
 
   bool _isAnyFieldEmpty() {
     return [
@@ -81,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
         backgroundColor: Colors.lightBlue.shade200,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.pink),
+          icon: const Icon(Icons.arrow_back, color: Colors.pink),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -89,7 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: GradientBackground(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               const Text(
@@ -140,8 +138,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                       ),
-
-
 
                       const SizedBox(height: 16.0),
                       TextField(
@@ -302,7 +298,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           }
 
                         },
-
 
                         icon: Icon(Icons.person_add, color: Colors.white),
                         label: Text(
