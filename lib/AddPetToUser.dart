@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:domus_buddies/pet_list.dart';
+import 'package:domus_buddies/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -27,7 +29,6 @@ class _AddPetToUserState extends State<AddPetToUser> {
   List<String> _species = [];
   List<String> _breeds = [];
   final List<String> _genders = ['Feminino', 'Masculino'];
-
 
 
   @override
@@ -344,10 +345,9 @@ class _AddPetToUserState extends State<AddPetToUser> {
         'breed': _selectedRaca,
         'gender': gender, // Include the selected gender
         'birthDate': datebirth?.substring(0, datebirth.indexOf('T', 0)),
-        'owner': 'RBB'
+        'owner': UserSession.getLoggedInUsername(),
         // 'imagePath': _selectedImage?.path, // Sending image path is optional
       };
-
 
       // Get the token using the existing KeycloakServicePut object
       final accessTokenProvider =
@@ -365,15 +365,19 @@ class _AddPetToUserState extends State<AddPetToUser> {
         body: jsonEncode(petData),
       );
 
-      if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Pet added successfully!')),
+
+      if (response.statusCode == 201) {
+        final snackBar = SnackBar(content: Text('Pet added successfully!'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+        // Delay navigation for a few seconds to allow the user to see the message
+        await Future.delayed(Duration(seconds: 1));
+
+        // Navigate to a different page after showing the success message
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MyPetsList()), // Replace SuccessPage with the actual page you want to navigate to
         );
       } else {
-
-        print('Error updating user: ${response.statusCode} ${response.reasonPhrase}');
-        print('Error updating user: ${String.fromCharCodes(response.bodyBytes)} ${petData}');
-
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Failed to add pet. Please try again.')),
         );
@@ -385,16 +389,13 @@ class _AddPetToUserState extends State<AddPetToUser> {
     }
   }
 
-
   bool _validateInputs() {
     return _nameController.text.isNotEmpty &&
         _shipController.text.isNotEmpty &&
         _selectedEspecie != null &&
         _selectedRaca != null &&
         _selectedDate != null ;
-    //&&
         //_selectedImage != null;
   }
-
 
 }

@@ -19,6 +19,7 @@ void main() async{
   //setWebEnabledForTesting(true);
 
 
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => FetchUserData(),
@@ -26,10 +27,13 @@ void main() async{
       child: DomusBuddiesApp(),
     ),
   );
+
+
 }
 
 class DomusBuddiesApp extends StatelessWidget {
   const DomusBuddiesApp({super.key});
+  static FetchUserData userInfo = FetchUserData();
 
   @override
   Widget build(BuildContext context) {

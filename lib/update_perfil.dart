@@ -159,7 +159,6 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
           _firstNameController.text = userData['firstName'] ?? '';
           _lastNameController.text = userData['lastName'] ?? '';
           _emailController.text = userData['email'] ?? '';
-          // ... (other fields)
         });
       } catch (error) {
         print('Error fetching user data: $error');

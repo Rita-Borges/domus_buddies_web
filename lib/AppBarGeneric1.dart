@@ -189,7 +189,7 @@ class CustomAppBar1State extends State<CustomAppBar1> {
                   break;
 
                 case 2:
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyPetsListPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyPetsList()));
                   break;
 
                 default:
