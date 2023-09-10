@@ -40,16 +40,14 @@ class MyPetsList extends StatelessWidget {
             Consumer<PetDataProvider>(
               builder: (context, provider, child) {
                 List<AnimalInfo> petNames = provider.petNames;
+
+                // Check if petNames is empty or null
                 if (petNames.isEmpty) {
                   // Fetch pet names on initial build
                   provider.fetchPetNames(authToken as String, username!);
-                  petNames = provider.petNames;
-
-                  // final petNames = provider.petNames;
-                  // if (petNames.isEmpty) {
-                  //   provider.fetchPetNames(authToken as String, username!);
-                  return buildLoadingIndicator();
+                  return buildLoadingIndicator(); // Show loading indicator
                 } else {
+                  // Pet names are available, build the pet list
                   return buildPetList(petNames, context);
                 }
               },

@@ -16,6 +16,7 @@ class PetDataProvider extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         petNames = parsePets(response.body);
+        notifyListeners();
         petNames.forEach((element) {print(element.name);
         });
       } else {
