@@ -1,8 +1,8 @@
 import 'package:domus_buddies/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'AppBarGeneric.dart';
-import 'BackgroundGeneric.dart';
+import 'background/AppBarGeneric.dart';
+import 'background/BackgroundGeneric.dart';
 import 'domain/animal_Info.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;

@@ -1,7 +1,7 @@
 import 'package:domus_buddies/FeedPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'BackgroundGeneric.dart';
+import 'background/BackgroundGeneric.dart';
 import 'RecoveryPage.dart';
 import 'login_keycloack.dart';
 

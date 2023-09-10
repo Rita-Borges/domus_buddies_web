@@ -1,23 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'FeedPage.dart';
-import 'Home_PageWetherTest.dart';
-import 'sevicos.dart';
-import 'NewAdoption.dart';
-import 'update_perfil.dart';
-import 'Os_meus_pets.dart';
-import 'pet_list.dart';
+import '../FeedPage.dart';
+import '../Home_PageWetherTest.dart';
+import '../sevicos.dart';
+import '../NewAdoption.dart';
+import '../update_perfil.dart';
+import '../Os_meus_pets.dart';
+import '../pet_list.dart';
 
 
-class CustomAppBar1 extends StatefulWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
-  CustomAppBar1State createState() => CustomAppBar1State();
+  CustomAppBarState createState() => CustomAppBarState();
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-class CustomAppBar1State extends State<CustomAppBar1> {
+class CustomAppBarState extends State<CustomAppBar> {
   bool _hasLocationPermission = false;
   List<PopupMenuEntry<int>> _menuOptions(BuildContext context) {
     return [
@@ -110,12 +110,6 @@ class CustomAppBar1State extends State<CustomAppBar1> {
       elevation: 0,
       centerTitle: true,
       actions: [
-        IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.pink),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
         IconButton(
           icon: const Icon(Icons.pets_sharp, color: Colors.white),
           onPressed: () {

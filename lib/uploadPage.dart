@@ -7,8 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 // Local imports
-import 'package:domus_buddies/AppBarGeneric.dart';
-import 'BackgroundGeneric.dart';
+import 'package:domus_buddies/background/AppBarGeneric.dart';
+import 'background/BackgroundGeneric.dart';
 class UploadPage extends StatefulWidget {
   UploadPage({Key? key}) : super(key: key);
 

@@ -5,8 +5,8 @@ import 'domain/animal_Info.dart';
 import 'get_keycloack_token.dart';
 import 'get_pet_list_request.dart';
 import 'AddPetToUser.dart';
-import 'AppBarGeneric.dart';
-import 'BackgroundGeneric.dart';
+import 'background/AppBarGeneric.dart';
+import 'background/BackgroundGeneric.dart';
 import 'registo_veterinario.dart';
 
 class MyPetsList extends StatelessWidget {

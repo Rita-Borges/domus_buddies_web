@@ -4,8 +4,8 @@ import 'package:domus_buddies/update_user_info_request.dart';
 import 'package:domus_buddies/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'AppBarGeneric.dart';
-import 'BackgroundGeneric.dart';
+import 'background/AppBarGeneric.dart';
+import 'background/BackgroundGeneric.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 

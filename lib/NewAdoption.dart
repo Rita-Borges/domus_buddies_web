@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'AppBarGeneric.dart';
-import 'BackgroundGeneric.dart';
+import 'background/AppBarGeneric.dart';
+import 'background/BackgroundGeneric.dart';
 
 class AdotePage extends StatelessWidget {
   AdotePage({Key? key});

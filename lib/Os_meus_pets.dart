@@ -1,7 +1,7 @@
 import 'package:domus_buddies/uploadPage.dart';
 import 'package:flutter/material.dart';
-import 'AppBarGeneric.dart';
-import 'BackgroundGeneric.dart';
+import 'background/AppBarGeneric.dart';
+import 'background/BackgroundGeneric.dart';
 
 class OsMeusPage extends StatelessWidget {
   OsMeusPage({Key? key});

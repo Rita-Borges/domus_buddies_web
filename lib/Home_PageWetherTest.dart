@@ -79,7 +79,7 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
   void navigateToRegisterPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => RegisterPage()),
+      MaterialPageRoute(builder: (context) => RegisterPage1()),
     );
   }
 

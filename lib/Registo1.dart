@@ -256,62 +256,62 @@ class _RegisterPage1State extends State<RegisterPage1> {
                         obscureText: true,
                       ),
                       const SizedBox(height: 24.0),
-                      Container(
-                          width: double.infinity,
-                          child: ElevatedButton.icon(
-                            onPressed: () async {
-                              String firstName = _firstNameController.text;
-                              String lastName = _lastNameController.text;
-                              String username = _usernameController.text;
-                              String email = _emailController.text;
-                              String password = _passwordController.text;
-                              String confirmPassword = _confirmPasswordController.text;
-                              // Perform registration logic here
-                              // Example: print the user's information
-                              print('First Name: $firstName');
-                              print('Last Name: $lastName');
-                              print('Username: $username');
-                              print('Email: $email');
-                              print('Password: $password');
-                              print('Confirm Password: $confirmPassword');
+                Container(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                        onPressed: () async {
+                          String firstName = _firstNameController.text;
+                          String lastName = _lastNameController.text;
+                          String username = _usernameController.text;
+                          String email = _emailController.text;
+                          String password = _passwordController.text;
+                          String confirmPassword = _confirmPasswordController.text;
+                          // Perform registration logic here
+                          // Example: print the user's information
+                          print('First Name: $firstName');
+                          print('Last Name: $lastName');
+                          print('Username: $username');
+                          print('Email: $email');
+                          print('Password: $password');
+                          print('Confirm Password: $confirmPassword');
 
-                              if (_isAnyFieldEmpty()) {
-                                _showErrorDialog(context, 'Por favor, preencha todos os campos.');
-                                return;
-                              }
-                              // Show the Cupertino-style dialog
-                              _showLocationPermissionDialog(context);
+                          if (_isAnyFieldEmpty()) {
+                            _showErrorDialog(context, 'Por favor, preencha todos os campos.');
+                            return;
+                          }
+                          // Show the Cupertino-style dialog
+                          _showLocationPermissionDialog(context);
 
-                              final success = await keycloak.registerUser(
-                                username: _usernameController.text,
-                                email: _emailController.text,
-                                firstName: _firstNameController.text,
-                                lastName: _lastNameController.text,
-                                password: _passwordController.text,
-                              );
+                          final success = await keycloak.registerUser(
+                            username: _usernameController.text,
+                            email: _emailController.text,
+                            firstName: _firstNameController.text,
+                            lastName: _lastNameController.text,
+                            password: _passwordController.text,
+                          );
 
-                              if (success) {
-                                print('User registered successfully!');
-                                // Optionally: navigate to another page or show a success dialog
-                              } else {
-                                _showErrorDialog(context, 'Falha ao registrar usuário.');
-                              }
+                          if (success) {
+                            print('User registered successfully!');
+                            // Optionally: navigate to another page or show a success dialog
+                          } else {
+                            _showErrorDialog(context, 'Falha ao registrar usuário.');
+                          }
 
-                            },
+                        },
 
-                            icon: const Icon(Icons.person_add, color: Colors.white),
-                            label: const Text(
-                              'Registar',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.pink,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          )
-                      ),
+                        icon: const Icon(Icons.person_add, color: Colors.white),
+                        label: const Text(
+                          'Registar',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.pink,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      )
+                ),
                     ],
                   ),
                 ),
