@@ -9,17 +9,16 @@ import 'domain/animal_Info.dart';
 import 'get_keycloack_token.dart';
 import 'registar_vacinas.dart'; // Import your RegistoVacinas page here
 
-class ObterRegistoVeterinario extends StatefulWidget {
+class ObterRegistoVeterinario1 extends StatefulWidget {
   final AnimalInfo animalInfo;
 
-  ObterRegistoVeterinario({Key? key, required this.animalInfo}) : super(key: key);
+  ObterRegistoVeterinario1({Key? key, required this.animalInfo}) : super(key: key);
 
   @override
-
-  _ObterRegistoVeterinarioState createState() => _ObterRegistoVeterinarioState();
+  _ObterRegistoVeterinario1State createState() => _ObterRegistoVeterinario1State();
 }
 
-class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
+class _ObterRegistoVeterinario1State extends State<ObterRegistoVeterinario1> {
   List<dynamic>? clinicalRecords; // Change the type to List<dynamic>?
   bool isLoading = false;
 
@@ -70,7 +69,6 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
   }
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
@@ -94,27 +92,18 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
               Expanded(
                 child: ListView(
                   children: [
-                    _buildElevatedButton(
-                        'Chip nº: ${widget.animalInfo.microchip ?? ""}'),
+                    _buildElevatedButton('Chip nº: ${widget.animalInfo.microchip ?? ""}'),
                     _buildElevatedButton('Nome: ${widget.animalInfo.name}'),
-                    _buildElevatedButton(
-                        'Idade: ${widget.animalInfo.calculateAge()} meses'),
+                    _buildElevatedButton('Idade: ${widget.animalInfo.calculateAge()} meses'),
                     _buildElevatedButton('Espécie: ${widget.animalInfo.specie}'),
                     _buildElevatedButton('Raça: ${widget.animalInfo.breed}'),
                     const SizedBox(height: 8),
-                    _buildElevatedButton('Registo clínico', onPressed: () {
-                      // Navigate to the ClinicalRecordsPage when the button is pressed
-                      var animalInfoInner = widget.animalInfo;
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>  RegistoVacinas(animalInfoInner),
-                        ),
-                      );
+                    _buildElevatedButtonWithIcon('Adicionar', () {
+                      // Add your button's onPressed logic here
                     }),
                     isLoading
                         ? const CircularProgressIndicator() // Show a loading indicator while data is being fetched
-                        : _buildTextField(
-                        'Clinical Records', clinicalRecords ?? []),
+                        : _buildTextField('Clinical Records', clinicalRecords ?? []),
                     const SizedBox(height: 8),
                     _buildElevatedButton('Próximo Agendamento', onPressed: () {
                       print('Próximo Agendamento button clicked!');
@@ -153,6 +142,31 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
     );
   }
 
+  Widget _buildElevatedButtonWithIcon(String text, VoidCallback? onPressed) {
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.pink,
+        onPrimary: Colors.white,
+        textStyle: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: BorderSide.none,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        alignment: Alignment.center,
+      ),
+      onPressed: onPressed,
+      icon: Icon(
+        Icons.local_hospital, // Replace with your vaccine icon
+        color: Colors.white,
+      ),
+      label: Text(text),
+    );
+  }
+
   Widget _buildTextField(String labelText, List<dynamic> data) {
     final text = data.isNotEmpty
         ? data.map((record) {
@@ -172,34 +186,6 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
         controller: TextEditingController(text: text),
         readOnly: true,
         style: const TextStyle(color: Colors.white), // Clinical records text color
-      ),
-    );
-  }
-}
-
-class ClinicalRecordsPage extends StatelessWidget {
-  final List<dynamic> clinicalRecords;
-
-  ClinicalRecordsPage({required this.clinicalRecords});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Clinical Records'),
-      ),
-      body: ListView.builder(
-        itemCount: clinicalRecords.length,
-        itemBuilder: (context, index) {
-          final record = clinicalRecords[index];
-          // Build a widget to display the clinical record data
-          // You can customize the UI as needed
-          return ListTile(
-            title: Text('Date: ${record['date']}'),
-            subtitle: Text('Description: ${record['description']}'),
-            // Add more fields as needed
-          );
-        },
       ),
     );
   }

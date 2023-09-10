@@ -130,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: CircleAvatar(
                                 backgroundColor: Colors.white54,
                                 child: IconButton(
-                                  icon: Icon(Icons.edit, color: Colors.pink),
+                                  icon: const Icon(Icons.edit, color: Colors.pink),
                                   onPressed: _pickImage,
                                 ),
                               ),
@@ -142,8 +142,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       const SizedBox(height: 16.0),
                       TextField(
                         controller: _firstNameController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
                           labelText: 'Primeiro Nome',
                           labelStyle: TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
@@ -158,11 +158,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       TextField(
                         controller: _lastNameController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
                           labelText: 'Último Nome',
                           labelStyle: TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
@@ -177,11 +177,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       TextField(
                         controller: _usernameController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
                           labelText: 'Username',
                           labelStyle: TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
@@ -196,11 +196,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       TextField(
                         controller: _emailController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
                           labelText: 'Email',
                           labelStyle: TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
@@ -215,11 +215,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       TextField(
                         controller: _passwordController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
                           labelText: 'Password',
                           labelStyle: TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
@@ -235,11 +235,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         obscureText: true,
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       TextField(
                         controller: _confirmPasswordController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
                           labelText: 'Confirma a tua Password',
                           labelStyle: TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
@@ -255,7 +255,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         obscureText: true,
                       ),
-                      SizedBox(height: 24.0),
+                      const SizedBox(height: 24.0),
                 Container(
                   width: double.infinity,
                   child: ElevatedButton.icon(
@@ -299,8 +299,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         },
 
-                        icon: Icon(Icons.person_add, color: Colors.white),
-                        label: Text(
+                        icon: const Icon(Icons.person_add, color: Colors.white),
+                        label: const Text(
                           'Registar',
                           style: TextStyle(color: Colors.white),
                         ),
@@ -329,17 +329,17 @@ void _showLocationPermissionDialog(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return CupertinoAlertDialog(
-        title: Text('Location Permission'),
-        content: Text('Do you allow the application to use your location via GPS?'),
+        title: const Text('Location Permission'),
+        content: const Text('Do you allow the application to use your location via GPS?'),
         actions: <Widget>[
           CupertinoDialogAction(
-            child: Text('No'),
+            child: const Text('No'),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           CupertinoDialogAction(
-            child: Text('Yes'),
+            child: const Text('Yes'),
             onPressed: () {
               // Handle location permission logic here
               Navigator.of(context).pop();
@@ -356,11 +356,11 @@ void _showErrorDialog(BuildContext context, String message) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Erro'),
+        title: const Text('Erro'),
         content: Text(message),
         actions: [
           TextButton(
-            child: Text('OK'),
+            child: const Text('OK'),
             onPressed: () {
               Navigator.of(context).pop();
             },
