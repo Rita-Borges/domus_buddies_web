@@ -1,4 +1,4 @@
-import 'package:domus_buddies/fetch_user_info.dart';
+import 'package:domus_buddies/User/fetch_user_info.dart';
 import 'package:domus_buddies/global_pet_data.dart';
 import 'package:domus_buddies/post_registo_clinico.dart';
 import 'package:domus_buddies/update_get_user_info_request.dart';
@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'domain/animal_Info.dart';
 
 import 'get_pet_list_request.dart';
-import 'AddPetToUser.dart';
+import 'User/AddPetToUser.dart';
 import 'background/AppBarGeneric.dart';
 import 'background/BackgroundGeneric.dart';
 import 'registo_veterinario.dart';

@@ -5,9 +5,9 @@ import 'register_keycloack.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-class RegisterPage1 extends StatefulWidget {
+class RegisterPagev2 extends StatefulWidget {
   @override
-  _RegisterPage1State createState() => _RegisterPage1State();
+  _RegisterPagev2State createState() => _RegisterPagev2State();
 }
 
 class ImageFromFile extends StatefulWidget {
@@ -34,7 +34,7 @@ class _ImageFromFileState extends State<ImageFromFile> {
   }
 }
 
-class _RegisterPage1State extends State<RegisterPage1> {
+class _RegisterPagev2State extends State<RegisterPagev2> {
   TextEditingController _firstNameController = TextEditingController();
   TextEditingController _lastNameController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();

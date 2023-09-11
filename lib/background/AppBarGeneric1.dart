@@ -5,7 +5,7 @@ import '../Home_PageWetherTest.dart';
 import '../sevicos.dart';
 import '../NewAdoption.dart';
 import '../update_perfil.dart';
-import '../Os_meus_pets.dart';
+import '../as_minhas_publicacoes.dart';
 import '../pet_list.dart';
 
 
@@ -119,7 +119,7 @@ class CustomAppBar1State extends State<CustomAppBar1> {
         IconButton(
           icon: const Icon(Icons.pets_sharp, color: Colors.white),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OsMeusPage()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => AsMinhasPublicacoes()));
           },
         ),
         IconButton(

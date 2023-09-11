@@ -1,7 +1,9 @@
+
+import 'package:domus_buddies/register_keycloack.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'background/BackgroundGeneric.dart';
-import 'register_keycloack.dart';
+
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
@@ -70,6 +72,46 @@ class _RegisterPage1State extends State<RegisterPage1> {
       _passwordController,
       _confirmPasswordController
     ].any((controller) => controller.text.isEmpty);
+  }
+
+  void _showSuccessSnackBar(String message) {
+    final snackBar = SnackBar(
+      content: Text(message),
+      duration: Duration(seconds: 3),
+      backgroundColor: Colors.pink, // Change color to pink
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _showErrorSnackBar(String message) {
+    final snackBar = SnackBar(
+      content: Text(message),
+      duration: Duration(seconds: 3),
+      backgroundColor: Colors.red,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Erro'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -257,60 +299,49 @@ class _RegisterPage1State extends State<RegisterPage1> {
                       ),
                       const SizedBox(height: 24.0),
                       Container(
-                          width: double.infinity,
-                          child: ElevatedButton.icon(
-                            onPressed: () async {
-                              String firstName = _firstNameController.text;
-                              String lastName = _lastNameController.text;
-                              String username = _usernameController.text;
-                              String email = _emailController.text;
-                              String password = _passwordController.text;
-                              String confirmPassword = _confirmPasswordController.text;
-                              // Perform registration logic here
-                              // Example: print the user's information
-                              print('First Name: $firstName');
-                              print('Last Name: $lastName');
-                              print('Username: $username');
-                              print('Email: $email');
-                              print('Password: $password');
-                              print('Confirm Password: $confirmPassword');
+                        width: double.infinity,
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            String firstName = _firstNameController.text;
+                            String lastName = _lastNameController.text;
+                            String username = _usernameController.text;
+                            String email = _emailController.text;
+                            String password = _passwordController.text;
+                            String confirmPassword = _confirmPasswordController.text;
 
-                              if (_isAnyFieldEmpty()) {
-                                _showErrorDialog(context, 'Por favor, preencha todos os campos.');
-                                return;
-                              }
-                              // Show the Cupertino-style dialog
-                              _showLocationPermissionDialog(context);
+                            if (_isAnyFieldEmpty()) {
+                              _showErrorSnackBar('Por favor, preencha todos os campos.');
+                              return;
+                            }
 
-                              final success = await keycloak.registerUser(
-                                username: _usernameController.text,
-                                email: _emailController.text,
-                                firstName: _firstNameController.text,
-                                lastName: _lastNameController.text,
-                                password: _passwordController.text,
-                              );
+                            final success = await keycloak.registerUser(
+                              username: username,
+                              email: email,
+                              firstName: firstName,
+                              lastName: lastName,
+                              password: password,
+                            );
 
-                              if (success) {
-                                print('User registered successfully!');
-                                // Optionally: navigate to another page or show a success dialog
-                              } else {
-                                _showErrorDialog(context, 'Falha ao registrar usuário.');
-                              }
-
-                            },
-
-                            icon: const Icon(Icons.person_add, color: Colors.white),
-                            label: const Text(
-                              'Registar',
-                              style: TextStyle(color: Colors.white),
+                            if (success) {
+                              print('User registered successfully!');
+                              _showSuccessSnackBar('Registration successful!');
+                              // Optionally: navigate to another page or show a success dialog
+                            } else {
+                              _showErrorDialog(context, 'Falha ao registrar usuário.');
+                            }
+                          },
+                          icon: const Icon(Icons.person_add, color: Colors.white),
+                          label: const Text(
+                            'Registar',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.pink, // Change color to pink
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.pink,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          )
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -322,51 +353,4 @@ class _RegisterPage1State extends State<RegisterPage1> {
       ),
     );
   }
-}
-// Function to show Cupertino-style dialog
-void _showLocationPermissionDialog(BuildContext context) {
-  showCupertinoDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return CupertinoAlertDialog(
-        title: const Text('Location Permission'),
-        content: const Text('Do you allow the application to use your location via GPS?'),
-        actions: <Widget>[
-          CupertinoDialogAction(
-            child: const Text('No'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          CupertinoDialogAction(
-            child: const Text('Yes'),
-            onPressed: () {
-              // Handle location permission logic here
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
-
-void _showErrorDialog(BuildContext context, String message) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Erro'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
 }

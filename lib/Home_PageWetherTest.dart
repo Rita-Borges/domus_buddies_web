@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import 'Registo.dart';
 import 'login.dart';
 
@@ -192,24 +190,3 @@ class _HomePageWeatherTestState extends State<HomePageWeatherTest> {
   }
 }
 
-class LoginPage1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login Page',
-      theme: ThemeData(),
-      home: LoginPagev0(),
-    );
-  }
-}
-
-class RegisterPage1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Registration Page',
-      theme: ThemeData(),
-      //home: PositiveLogin(),
-    );
-  }
-}
