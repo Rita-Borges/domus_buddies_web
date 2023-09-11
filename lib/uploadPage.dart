@@ -1,4 +1,9 @@
 // Flutter imports
+import 'dart:typed_data';
+
+import 'package:domus_buddies/domain/post_info.dart';
+import 'package:domus_buddies/services/feed_services.dart';
+import 'package:domus_buddies/user_info.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -8,7 +13,11 @@ import 'package:dotted_border/dotted_border.dart';
 
 // Local imports
 import 'package:domus_buddies/background/AppBarGeneric.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'User/get_keycloack_token.dart';
 import 'background/BackgroundGeneric.dart';
+
 class UploadPage extends StatefulWidget {
   UploadPage({Key? key}) : super(key: key);
 
@@ -29,14 +38,33 @@ class _UploadPageState extends State<UploadPage> {
       });
     }
   }
+  Future<List<int>> getListBytesOfFile() async{
+    Uint8List uint8list = await _selectedFile!.readAsBytes()!;
+    return uint8list.toList();
+  }
 
-  void _publish() {
-    // TODO: Implement the logic to publish the image and text
-    print("Publishing: ${_textController.text}");
+  Future<void> _publish(String username, String token) async {
+    var message = _textController.text;
+
+
+    PostInfo postInfo = PostInfo(
+        message: message,
+        publishDate: DateTime.now(),
+        username: username,
+        userLiked: [],
+        fileInBytes: await getListBytesOfFile(),
+        comments: []);
+
+    FeedServices().publishPost(token, postInfo, File(_selectedFile!.path));
   }
 
   @override
   Widget build(BuildContext context) {
+    final accessTokenProvider =
+    Provider.of<FetchUserData>(context, listen: false);
+    final authToken = accessTokenProvider.accessToken;
+    String? loggedInUsername = UserSession.getLoggedInUsername();
+
     return MaterialApp(
       home: Scaffold(
         appBar: CustomAppBar(),
@@ -115,7 +143,9 @@ class _UploadPageState extends State<UploadPage> {
 
                       // Publicar button with pink color and rounded corners
                       ElevatedButton(
-                        onPressed: _publish,
+                        onPressed: () async {
+                          _publish(loggedInUsername!, authToken!);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.pink, // Background color
                           foregroundColor: Colors.white, // Foreground (text/icon) color

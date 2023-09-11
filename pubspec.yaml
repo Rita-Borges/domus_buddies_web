@@ -45,6 +45,9 @@ dependencies:
   intl: ^0.18.0
   syncfusion_flutter_calendar: ^22.2.12
   shared_preferences: ^2.0.8
+  image: ^4.0.17
+  chewie: ^1.0.0
+  http_parser: ^4.0.2
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +78,10 @@ flutter:
     - assets/images/logo2.png
     - assets/images/ImageHome.jpeg
     - assets/images/img.jpg
+    - assets/images/night.jpg
+    - assets/Gif/astronot.gif
+    - assets/Gif/cat.gif
+    - assets/Gif/connection-error.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
