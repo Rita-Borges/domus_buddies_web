@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:domus_buddies/domain/post_info.dart';
+import 'package:domus_buddies/pet/post_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;

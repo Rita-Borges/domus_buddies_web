@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:domus_buddies/update_get_user_info_request.dart';
-import 'package:domus_buddies/user_info.dart';
+import 'package:domus_buddies/User/update_get_user_info_request.dart';
+import 'package:domus_buddies/User/user_info.dart';
 
 // Define AccessTokenProvider and UserDataProvider classes if not defined
 class AccessTokenProvider with ChangeNotifier {

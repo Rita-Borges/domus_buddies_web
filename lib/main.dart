@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Home_PageWetherTest.dart';
+import 'home_page.dart';
 import 'User/get_keycloack_token.dart';
 
 
@@ -13,7 +13,7 @@ void main() async{
   runApp(
     ChangeNotifierProvider(
       create: (context) => FetchUserData(),
-      child: DomusBuddiesApp(),
+      child: const DomusBuddiesApp(),
     ),
   );
 }
@@ -28,7 +28,7 @@ class DomusBuddiesApp extends StatelessWidget {
     return MaterialApp(
       title: 'Home Page',
       theme: ThemeData(),
-      home: HomePageWeatherTest(),
+      home: const HomePage(),
     );
   }
 }

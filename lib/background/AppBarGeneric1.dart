@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../FeedPage.dart';
-import '../Home_PageWetherTest.dart';
-import '../sevicos.dart';
-import '../NewAdoption.dart';
-import '../update_perfil.dart';
-import '../as_minhas_publicacoes.dart';
-import '../pet_list.dart';
+import '../feed_page.dart';
+import '../home_page.dart';
+import '../services/sevicos.dart';
+import '../pet/new_adoption.dart';
+import '../User/update_perfil.dart';
+import '../User/as_minhas_publicacoes.dart';
+import '../pet/pet_list.dart';
 
 
 class CustomAppBar1 extends StatefulWidget implements PreferredSizeWidget {
@@ -202,7 +202,7 @@ class CustomAppBar1State extends State<CustomAppBar1> {
           icon: const Icon(Icons.logout, color: Colors.pink),
           onPressed: () {
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const HomePageWeatherTest()),
+              MaterialPageRoute(builder: (context) => const HomePage()),
                   (route) => false,
             );
           },

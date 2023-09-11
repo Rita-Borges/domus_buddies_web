@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:domus_buddies/pet_list.dart';
-import 'package:domus_buddies/user_info.dart';
+import 'package:domus_buddies/pet/pet_list.dart';
+import 'package:domus_buddies/User/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import '../background/AppBarGeneric.dart';
 import '../background/BackgroundGeneric.dart';
 import 'get_keycloack_token.dart';
-import '../update_perfil.dart';
+import 'update_perfil.dart';
 
 class AddPetToUser extends StatefulWidget {
   const AddPetToUser({Key? key}) : super(key: key);

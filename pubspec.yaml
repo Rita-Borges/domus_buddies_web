@@ -82,6 +82,15 @@ flutter:
     - assets/Gif/astronot.gif
     - assets/Gif/cat.gif
     - assets/Gif/connection-error.gif
+    - assets/images/sun.png
+    - assets/images/sun_1.png
+    - assets/images/sun-behind-cloud.png
+    - assets/images/rain.png
+    - assets/images/snowflake.png
+    - assets/Gif/exdog.gif
+    - assets/Gif/MV5L.gif
+    - assets/images/cryptocurrency-art.png
+    - assets/images/garden.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
