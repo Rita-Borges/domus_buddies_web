@@ -1,8 +1,9 @@
 import 'package:domus_buddies/User/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../domain/animal_Info.dart';
+
 import '../User/get_keycloack_token.dart';
+import 'animal_info.dart';
 import 'get_pet_list_request.dart';
 import '../User/AddPetToUser.dart';
 import '../background/AppBarGeneric.dart';

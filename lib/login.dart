@@ -21,12 +21,8 @@ class _LoginPagev0State extends State<LoginPagev0> {
   void _handleLogin() async {
     final String username = _usernameController.text.toLowerCase();
     final String password = _passwordController.text;
-
     final token = await KeycloakService().authenticate(context, username, password);
-
-    // Replace this with your actual authentication logic
     bool isAuthenticated = true;
-
     if (isAuthenticated) {
       Navigator.pushReplacement(
         context,
@@ -46,7 +42,7 @@ class _LoginPagev0State extends State<LoginPagev0> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(loginFailed: _loginFailed), // Pass the loginFailed variable
+      appBar: CustomAppBar(loginFailed: _loginFailed),
       body: CustomBody(
         isHovering: _isHovering,
         usernameController: _usernameController,
@@ -63,7 +59,7 @@ class _LoginPagev0State extends State<LoginPagev0> {
 }
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final bool loginFailed; // Receive loginFailed as a parameter
+  final bool loginFailed;
 
   const CustomAppBar({Key? key, required this.loginFailed}) : super(key: key);
 
@@ -82,7 +78,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       title: loginFailed
-          ? Text(
+          ? const Text(
         'Login Failed',
         style: TextStyle(color: Colors.white),
       )

@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../domain/animal_Info.dart';
+
+import 'animal_info.dart';
+
 
 class PetDataProvider extends ChangeNotifier {
   List<AnimalInfo> petNames = List.empty();

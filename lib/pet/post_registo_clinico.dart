@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../domain/animal_Info.dart';
+import 'animal_info.dart';
 
 class PostRegistoClinico {
   final String nome;

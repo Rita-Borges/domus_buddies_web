@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'dart:convert';
 import '../background/AppBarGeneric.dart';
 import '../background/BackgroundGeneric.dart';
-import '../domain/animal_Info.dart';
 import '../User/get_keycloack_token.dart';
+import 'animal_info.dart';
 import 'registar_vacinas.dart';
 import 'dart:async';
 
@@ -132,10 +132,9 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
                         : _buildTextField(
                         'Clinical Records', clinicalRecords ?? []),
                     const SizedBox(height: 8),
-                    const SizedBox(height: 8),
                     _buildElevatedButton('Próximo Agendamento',
                         onPressed: scheduleAppointment),
-                    _buildTextField('Next Appointment', []),
+                    _buildTextField('Next Appointment = ''work in progress',[]),
                   ],
                 ),
               ),
@@ -174,7 +173,7 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
         ? data.map((record) {
       return 'Date: ${record['date']}\nName: ${record['name']}\nDescription: ${record['description']}\nDoctor: ${record['doctorName']}';
     }).join('\n\n') // Add two newline characters between records
-        : 'No clinical records available';
+        : 'No clinical records available ';
 
     return TextField(
       maxLines: null,

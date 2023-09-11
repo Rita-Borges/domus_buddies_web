@@ -1,4 +1,6 @@
-import '../domain/animal_Info.dart';
+
+
+import 'animal_info.dart';
 
 AnimalInfo? globalAnimalInfo;
 

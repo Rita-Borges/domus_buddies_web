@@ -39,6 +39,9 @@ class AdotePage extends StatelessWidget {
                     children: [
                       const SizedBox(height: 16),
                       buildImageSection(
+                          context, 'assets/images/diversion-board.png', 120, 45),
+                      const SizedBox(height: 16),
+                      buildImageSection(
                           context, 'assets/images/ImageHome.jpeg', 120, 45),
                       const SizedBox(height: 16),
                       buildImageSection(

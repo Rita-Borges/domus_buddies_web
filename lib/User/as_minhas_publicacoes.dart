@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:domus_buddies/services/as_minhas_publicacoes_service.dart';
+import 'package:domus_buddies/User/as_minhas_publicacoes_service.dart';
 import 'package:flutter/material.dart';
 import 'package:domus_buddies/pet/post_info.dart';
 import 'package:domus_buddies/upload_page.dart';
@@ -108,13 +108,13 @@ class AsMinhasPublicacoes extends StatelessWidget {
 
   Widget buildMediaSection(BuildContext context, PostInfo post) {
     return Card(
-      color: Colors.transparent, // Make the card transparent
+      color: Colors.transparent,
       elevation: 4,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: Colors.white.withOpacity(0.5), // Change this color to whatever you like
+            color: Colors.white.withOpacity(0.5),
             width: 1.5,
           ),
         ),
@@ -194,7 +194,7 @@ class AsMinhasPublicacoes extends StatelessWidget {
     // Determine which GIF to display based on whether there are any feeds.
     String gifAsset;
     if (feeds.isEmpty) {
-      gifAsset = 'assets/Gif/cat.gif';
+      gifAsset = 'assets/Gif/astronot.gif';
     } else {
       gifAsset = 'assets/Gif/cat.gif';
     }

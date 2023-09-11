@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:intl/intl.dart';
 
-import 'image_services.dart';
+import '../services/image_services.dart';
 
 class AsMinhasPubliccoesService extends ChangeNotifier {
   List<PostInfo> feeds = List.empty();

@@ -91,6 +91,7 @@ flutter:
     - assets/Gif/MV5L.gif
     - assets/images/cryptocurrency-art.png
     - assets/images/garden.jpg
+    - assets/images/diversion-board.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

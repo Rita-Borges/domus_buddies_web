@@ -166,19 +166,15 @@ class _SearchServicesState extends State<SearchServices> {
                             SizedBox(width: 10),  // Spacing between the icon and text
                             Text(
                               'pesquisar',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,),  // White text color
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,),
                             ),
                           ],
                         ),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Expanded(
-                      child: ListView(
-                        children: const [
-                          // Add your ListView items here
-                        ],
-                      ),
+                    Image.asset(
+                      'assets/images/diversion-board.png',
                     ),
                   ],
                 ),
