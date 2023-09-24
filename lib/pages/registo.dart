@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import '../background/background_generic.dart';
-import 'login.dart';
+import 'login_page.dart';
 import '../services/register_keycloack.dart';
 import 'dart:io';
 
@@ -243,7 +243,7 @@ class _RegisterPage1State extends State<RegisterPage1> {
             // Delay navigation to give time for the user to see the success message
             Future.delayed(Duration(seconds: 2), () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => LoginPagev0(), // Replace with your login page widget
+                builder: (context) => LoginPage(), // Replace with your login page widget
               ));
             });
           } else {

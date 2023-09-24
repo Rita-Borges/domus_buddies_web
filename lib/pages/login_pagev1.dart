@@ -4,14 +4,14 @@ import '../background/background_generic.dart';
 import 'recovery_page.dart';
 import 'package:domus_buddies/pages/feed_page.dart';
 
-class LoginPagev0 extends StatefulWidget {
-  const LoginPagev0({Key? key}) : super(key: key);
+class LoginPagev1 extends StatefulWidget {
+  const LoginPagev1({Key? key}) : super(key: key);
 
   @override
-  _LoginPagev0State createState() => _LoginPagev0State();
+  _LoginPagev1State createState() => _LoginPagev1State();
 }
 
-class _LoginPagev0State extends State<LoginPagev0> {
+class _LoginPagev1State extends State<LoginPagev1> {
   bool _isHovering = false;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();

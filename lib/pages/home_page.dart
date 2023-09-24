@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'registo.dart';
-import 'login.dart';
+import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
   void navigateToLoginPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const LoginPagev0()),
+      MaterialPageRoute(builder: (context) => const LoginPage()),
     );
   }
 
