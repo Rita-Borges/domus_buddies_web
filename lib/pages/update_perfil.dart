@@ -9,7 +9,7 @@ import '../background/background_generic.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-import '../feed_page.dart';
+import 'feed_page.dart';
 
 class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({super.key});

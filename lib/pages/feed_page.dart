@@ -2,12 +2,12 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:domus_buddies/services/post_info.dart';
 import 'package:domus_buddies/services/feed_services.dart';
-import 'package:domus_buddies/upload_page.dart';
+import 'package:domus_buddies/pages/upload_page.dart';
 import 'package:domus_buddies/User/user_info.dart';
 import 'package:provider/provider.dart';
-import 'background/appbar_generic.dart';
-import 'background/background_generic.dart';
-import 'User/get_keycloack_token.dart';
+import '../background/appbar_generic.dart';
+import '../background/background_generic.dart';
+import '../User/get_keycloack_token.dart';
 
 class NovidadesPage extends StatelessWidget {
   const NovidadesPage({super.key,});

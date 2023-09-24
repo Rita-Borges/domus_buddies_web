@@ -1,17 +1,17 @@
 import 'dart:typed_data';
-import 'package:domus_buddies/User/as_minhas_publicacoes_service.dart';
 import 'package:flutter/material.dart';
 import 'package:domus_buddies/services/post_info.dart';
-import 'package:domus_buddies/upload_page.dart';
+import 'package:domus_buddies/services/feed_services.dart';
+import 'package:domus_buddies/pages/upload_page.dart';
 import 'package:domus_buddies/User/user_info.dart';
 import 'package:provider/provider.dart';
 import '../background/appbar_generic.dart';
 import '../background/background_generic.dart';
-import 'get_keycloack_token.dart';
+import '../User/get_keycloack_token.dart';
 
 
-class AsMinhasPublicacoes extends StatelessWidget {
-  const AsMinhasPublicacoes({super.key});
+class NovidadesPageV1 extends StatelessWidget {
+  const NovidadesPageV1({super.key,});
 
   Widget buildLoadingIndicator() {
     return const Center(
@@ -26,13 +26,13 @@ class AsMinhasPublicacoes extends StatelessWidget {
     final authToken = accessTokenProvider.accessToken;
 
     return ChangeNotifierProvider(
-      create: (context) => AsMinhasPubliccoesService(),
+      create: (context) => FeedServices(),
       child: Scaffold(
         appBar: CustomAppBar(),
-        body: Consumer<AsMinhasPubliccoesService>(builder: (context, provider, child) {
+        body: Consumer<FeedServices>(builder: (context, provider, child) {
           List<PostInfo> feeds = provider.feeds;
           if (feeds.isEmpty) {
-            provider.fetchFeed(authToken as String, username!);
+            provider.fetchFeed(authToken as String, 30, 0);
             return buildFunnyAnimation(feeds);
           } else {
             return buildFeedList(context, feeds);
@@ -53,7 +53,7 @@ class AsMinhasPublicacoes extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
-                  ' As minhas publicações',
+                  ' Novidades',
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -66,7 +66,6 @@ class AsMinhasPublicacoes extends StatelessWidget {
                     itemCount: feeds.length,
                     itemBuilder: (context, index) {
                       return buildPostSection(context, feeds.elementAt(index));
-                      //}
                     },
                   ),
                 ),
@@ -180,7 +179,6 @@ class AsMinhasPublicacoes extends StatelessWidget {
                   style: const TextStyle(color: Colors.white),
                 ),
                 onTap: () {
-                  // Handle comment tap if needed
                 },
               );
             },
@@ -191,19 +189,17 @@ class AsMinhasPublicacoes extends StatelessWidget {
   }
 
   Widget buildFunnyAnimation(List<PostInfo> feeds) {
-    // Determine which GIF to display based on whether there are any feeds.
     String gifAsset;
     if (feeds.isEmpty) {
-      gifAsset = 'assets/Gif/astronot.gif';
+      gifAsset = 'assets/Gif/cat.gif';
     } else {
       gifAsset = 'assets/Gif/cat.gif';
     }
 
     return Stack(
       children: [
-        // Background image with stars
         Image.asset(
-          'assets/images/night.jpg',
+          'assets/images/garden.jpg',
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
@@ -221,7 +217,7 @@ class AsMinhasPublicacoes extends StatelessWidget {
 }
 
 class PlaceholderImage extends StatelessWidget {
-  const PlaceholderImage({super.key, });
+  const PlaceholderImage({super.key,});
 
   @override
   Widget build(BuildContext context) {

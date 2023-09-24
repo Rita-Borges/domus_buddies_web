@@ -1,8 +1,8 @@
 import 'package:domus_buddies/services/login_keycloack.dart';
 import 'package:flutter/material.dart';
-import 'background/background_generic.dart';
-import 'User/recovery_page.dart';
-import 'package:domus_buddies/feed_page.dart';
+import '../background/background_generic.dart';
+import 'recovery_page.dart';
+import 'package:domus_buddies/pages/feed_page.dart';
 
 class LoginPagev0 extends StatefulWidget {
   const LoginPagev0({Key? key}) : super(key: key);

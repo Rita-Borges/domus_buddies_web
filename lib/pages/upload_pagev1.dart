@@ -7,8 +7,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:domus_buddies/background/appbar_generic.dart';
 import 'package:provider/provider.dart';
-import 'User/get_keycloack_token.dart';
-import 'background/background_generic.dart';
+import '../User/get_keycloack_token.dart';
+import '../background/background_generic.dart';
 
 
 

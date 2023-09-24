@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../feed_page.dart';
-import '../home_page.dart';
-import '../services/sevicos.dart';
-import '../pet/new_adoption.dart';
-import '../User/update_perfil.dart';
-import '../User/as_minhas_publicacoes.dart';
-import '../pet/pet_list.dart';
+import '../pages/feed_page.dart';
+import '../pages/home_page.dart';
+import '../pages/progresso/sevicos.dart';
+import '../pages/progresso/new_adoption.dart';
+import '../pages/update_perfil.dart';
+import '../pages/as_minhas_publicacoes.dart';
+import '../pages/pet_list.dart';
 
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {

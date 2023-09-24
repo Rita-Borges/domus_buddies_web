@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../User/get_keycloack_token.dart';
-import 'animal_info.dart';
-import 'get_pet_list_request.dart';
-import '../User/add_pet_to_user.dart';
+import '../pet/animal_info.dart';
+import '../pet/get_pet_list_request.dart';
+import 'add_pet_to_user.dart';
 import '../background/appbar_generic.dart';
 import '../background/background_generic.dart';
 import 'registo_veterinario.dart';

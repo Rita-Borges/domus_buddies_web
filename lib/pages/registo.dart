@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import '../background/background_generic.dart';
-import '../login.dart';
+import 'login.dart';
 import '../services/register_keycloack.dart';
 import 'dart:io';
 

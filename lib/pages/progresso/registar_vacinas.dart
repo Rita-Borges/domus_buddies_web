@@ -1,15 +1,15 @@
 import 'package:domus_buddies/User/user_info.dart';
-import 'package:domus_buddies/pet/pet_list.dart';
+import 'package:domus_buddies/pages/pet_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../background/appbar_generic.dart';
-import '../background/background_generic.dart';
+import '../../background/appbar_generic.dart';
+import '../../background/background_generic.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import '../User/get_keycloack_token.dart';
-import 'animal_info.dart';
+import '../../User/get_keycloack_token.dart';
+import '../../pet/animal_info.dart';
 
 class RegistoVacinas extends StatefulWidget {
   final AnimalInfo animalInfo;

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart' as file_picker;
 import 'package:provider/provider.dart';
-import 'package:domus_buddies/User/as_minhas_publicacoes.dart';
+import 'package:domus_buddies/pages/as_minhas_publicacoes.dart';
 import 'package:domus_buddies/services/post_info.dart';
 import 'package:domus_buddies/services/feed_services.dart';
 import 'package:domus_buddies/User/user_info.dart';
 import 'package:domus_buddies/background/appbar_generic.dart';
 import 'package:domus_buddies/background/background_generic.dart';
-import 'User/get_keycloack_token.dart';
+import '../User/get_keycloack_token.dart';
 
 class UploadPage extends StatefulWidget {
   const UploadPage({Key? key}) : super(key: key);

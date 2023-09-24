@@ -1,7 +1,7 @@
-import 'package:domus_buddies/upload_page.dart';
+import 'package:domus_buddies/pages/upload_page.dart';
 import 'package:flutter/material.dart';
-import '../background/appbar_generic.dart';
-import '../background/background_generic.dart';
+import '../../background/appbar_generic.dart';
+import '../../background/background_generic.dart';
 
 class ConversationPage extends StatelessWidget {
   const ConversationPage({super.key});

@@ -5,8 +5,8 @@ import 'dart:convert';
 import '../background/appbar_generic.dart';
 import '../background/background_generic.dart';
 import '../User/get_keycloack_token.dart';
-import 'animal_info.dart';
-import 'registar_vacinas.dart';
+import '../pet/animal_info.dart';
+import 'progresso/registar_vacinas.dart';
 import 'dart:async';
 
 class ObterRegistoVeterinario extends StatefulWidget {
