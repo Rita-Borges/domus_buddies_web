@@ -1,8 +1,7 @@
 import 'package:domus_buddies/services/login_keycloack.dart';
 import 'package:flutter/material.dart';
-import 'background/BackgroundGeneric.dart';
+import 'background/background_generic.dart';
 import 'User/recovery_page.dart';
-
 import 'package:domus_buddies/feed_page.dart';
 
 class LoginPagev0 extends StatefulWidget {
@@ -16,7 +15,13 @@ class _LoginPagev0State extends State<LoginPagev0> {
   bool _isHovering = false;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool _loginFailed = false; // Track login failure
+  final bool _loginFailed = false; // Track login failure
+
+  double _calculateFontSize(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double fontSize = screenWidth * 0.03; // Adjust this multiplier as needed
+    return fontSize;
+  }
 
   void _handleLogin() async {
     final String username = _usernameController.text.toLowerCase();
@@ -30,17 +35,13 @@ class _LoginPagev0State extends State<LoginPagev0> {
           builder: (context) => const PositiveLogin(),
         ),
       );
-    } else {
-      setState(() {
-        _loginFailed = true;
-
-      });
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
+    double fontSize = _calculateFontSize(context);
+
     return Scaffold(
       appBar: CustomAppBar(loginFailed: _loginFailed),
       body: CustomBody(
@@ -53,6 +54,7 @@ class _LoginPagev0State extends State<LoginPagev0> {
             _isHovering = value;
           });
         },
+        fontSize: fontSize,
       ),
     );
   }
@@ -93,6 +95,7 @@ class CustomBody extends StatefulWidget {
   final TextEditingController passwordController;
   final VoidCallback handleLogin;
   final Function(bool) setHovering;
+  final double fontSize;
 
   const CustomBody({
     Key? key,
@@ -101,6 +104,7 @@ class CustomBody extends StatefulWidget {
     required this.passwordController,
     required this.handleLogin,
     required this.setHovering,
+    required this.fontSize,
   }) : super(key: key);
 
   @override
@@ -115,12 +119,12 @@ class _CustomBodyState extends State<CustomBody> {
         child: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
-            const Center(
+            Center(
               child: Text(
                 'Efetue Login',
                 style: TextStyle(
                   color: Colors.pink,
-                  fontSize: 40.0,
+                  fontSize: widget.fontSize,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Handwritten',
                 ),
@@ -147,7 +151,7 @@ class _CustomBodyState extends State<CustomBody> {
                 ),
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 12.0),
             TextFormField(
               controller: widget.passwordController,
               style: const TextStyle(color: Colors.white),
@@ -164,17 +168,17 @@ class _CustomBodyState extends State<CustomBody> {
               ),
               obscureText: true,
             ),
-            const SizedBox(height: 32.0),
+            const SizedBox(height: 12.0),
             ElevatedLoginButton(
               handleLogin: widget.handleLogin,
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 12.0),
             GestureDetector(
               onTapDown: (_) {
-                widget.setHovering(true); // Update isHovering to true
+                widget.setHovering(true);
               },
               onTapCancel: () {
-                widget.setHovering(false); // Update isHovering to false
+                widget.setHovering(false);
               },
               onTap: () {
                 Navigator.push(
@@ -263,11 +267,7 @@ class PositiveLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Move to feedPage',
-      theme: ThemeData(),
-      home: const NovidadesPage(),
-    );
+    return const NovidadesPage();
   }
 }
 
@@ -276,10 +276,6 @@ class PasswordRecoveryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Password Recovery Page',
-      theme: ThemeData(),
-      home: PasswordRecoveryPage2(),
-    );
+    return PasswordRecoveryPage2();
   }
 }

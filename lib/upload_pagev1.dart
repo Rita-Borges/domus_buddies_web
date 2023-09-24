@@ -1,30 +1,31 @@
 import 'dart:typed_data';
-import 'package:flutter/material.dart';
-import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart' as file_picker;
-import 'package:provider/provider.dart';
-import 'package:domus_buddies/User/as_minhas_publicacoes.dart';
 import 'package:domus_buddies/services/post_info.dart';
 import 'package:domus_buddies/services/feed_services.dart';
 import 'package:domus_buddies/User/user_info.dart';
+import 'package:flutter/material.dart';
+import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:domus_buddies/background/appbar_generic.dart';
-import 'package:domus_buddies/background/background_generic.dart';
+import 'package:provider/provider.dart';
 import 'User/get_keycloack_token.dart';
+import 'background/background_generic.dart';
 
-class UploadPage extends StatefulWidget {
-  const UploadPage({Key? key}) : super(key: key);
+
+
+class UploadPageV1 extends StatefulWidget {
+  const UploadPageV1({Key? key}) : super(key: key);
 
   @override
-  _UploadPageState createState() => _UploadPageState();
+  _UploadPageV1State createState() => _UploadPageV1State();
 }
 
-class _UploadPageState extends State<UploadPage> {
-  file_picker.PlatformFile? _selectedFile; // Store the uploaded file
+class _UploadPageV1State extends State<UploadPageV1> {
+  PlatformFile? _selectedFile; // Store the uploaded file
   TextEditingController _textController = TextEditingController(); // Controller for text input
 
   Future<void> _pickFile() async {
-    final result = await file_picker.FilePicker.platform.pickFiles(
-      type: file_picker.FileType.image, // Use 'file_picker.FileType' to avoid conflicts
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image, // You can also add FileType.video for videos
     );
 
     if (result != null && result.files.isNotEmpty) {
@@ -66,7 +67,8 @@ class _UploadPageState extends State<UploadPage> {
 
   @override
   Widget build(BuildContext context) {
-    final accessTokenProvider = Provider.of<FetchUserData>(context, listen: false);
+    final accessTokenProvider =
+    Provider.of<FetchUserData>(context, listen: false);
     final authToken = accessTokenProvider.accessToken;
     String? loggedInUsername = UserSession.getLoggedInUsername();
 
@@ -148,14 +150,6 @@ class _UploadPageState extends State<UploadPage> {
                       ElevatedButton(
                         onPressed: () async {
                           _publish(loggedInUsername!, authToken!);
-
-                          // Navigate to the HomePage after publishing
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AsMinhasPublicacoes(),
-                            ),
-                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.pink, // Background color

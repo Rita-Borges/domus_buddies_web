@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import '../background/AppBarGeneric.dart';
-import '../background/BackgroundGeneric.dart';
+import '../background/appbar_generic.dart';
+import '../background/background_generic.dart';
 import 'get_keycloack_token.dart';
-import 'update_perfil.dart';
+
 
 class AddPetToUser extends StatefulWidget {
   const AddPetToUser({Key? key}) : super(key: key);
@@ -74,8 +74,6 @@ class _AddPetToUserState extends State<AddPetToUser> {
 
 
 
-  @override
-
   Widget _buildEspecieDropdown() => _buildDropdown(_species, _selectedEspecie, (value) {
     setState(() {
       _selectedEspecie = value;
@@ -96,9 +94,11 @@ class _AddPetToUserState extends State<AddPetToUser> {
       _selectedGender = value;
     });
   }, 'Sexo');
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: GradientBackground(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -292,8 +292,8 @@ class _AddPetToUserState extends State<AddPetToUser> {
   }
 
   Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       setState(() {
@@ -367,24 +367,24 @@ class _AddPetToUserState extends State<AddPetToUser> {
 
 
       if (response.statusCode == 201) {
-        final snackBar = SnackBar(content: Text('Pet added successfully!'));
+        const snackBar = SnackBar(content: Text('Pet added successfully!'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
         // Delay navigation for a few seconds to allow the user to see the message
-        await Future.delayed(Duration(seconds: 1));
+        await Future.delayed(const Duration(seconds: 1));
 
         // Navigate to a different page after showing the success message
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => MyPetsList()), // Replace SuccessPage with the actual page you want to navigate to
+          MaterialPageRoute(builder: (context) => const MyPetsList()), // Replace SuccessPage with the actual page you want to navigate to
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to add pet. Please try again.')),
+          const SnackBar(content: Text('Failed to add pet. Please try again.')),
         );
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please fill all fields correctly.')),
+        const SnackBar(content: Text('Please fill all fields correctly.')),
       );
     }
   }

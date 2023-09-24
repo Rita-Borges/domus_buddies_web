@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
-import '../background/AppBarGeneric.dart';
-import '../background/BackgroundGeneric.dart';
+import '../background/appbar_generic.dart';
+import '../background/background_generic.dart';
 import '../User/get_keycloack_token.dart';
 import 'animal_info.dart';
 import 'registar_vacinas.dart';
@@ -34,7 +34,7 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
       nextAppointmentTime = scheduledTime;
     });
 
-    // TODO: Implement your appointment scheduling logic here
+  
     print('Scheduled appointment for $scheduledTime');
   }
 
@@ -111,15 +111,18 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
                   children: [
                     _buildElevatedButton(
                         'Chip nº: ${widget.animalInfo.microchip ?? ""}'),
+                    const SizedBox(height: 8),
                     _buildElevatedButton('Nome: ${widget.animalInfo.name}'),
+                    const SizedBox(height: 8),
                     _buildElevatedButton(
                         'Idade: ${widget.animalInfo.calculateAge()} meses'),
+                    const SizedBox(height: 8),
                     _buildElevatedButton(
                         'Espécie: ${widget.animalInfo.specie}'),
+                    const SizedBox(height: 8),
                     _buildElevatedButton('Raça: ${widget.animalInfo.breed}'),
                     const SizedBox(height: 8),
                     _buildElevatedButton('Registo clínico', onPressed: () {
-                      // Navigate to the ClinicalRecordsPage when the button is pressed
                       var animalInfoInner = widget.animalInfo;
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -127,6 +130,7 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
                         ),
                       );
                     }),
+                    const SizedBox(height: 8),
                     isLoading
                         ? const CircularProgressIndicator() // Show a loading indicator while data is being fetched
                         : _buildTextField(
@@ -134,6 +138,7 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
                     const SizedBox(height: 8),
                     _buildElevatedButton('Próximo Agendamento',
                         onPressed: scheduleAppointment),
+                    const SizedBox(height: 8),
                     _buildTextField('Next Appointment = ''work in progress',[]),
                   ],
                 ),
@@ -172,7 +177,7 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
     final text = data.isNotEmpty
         ? data.map((record) {
       return 'Date: ${record['date']}\nName: ${record['name']}\nDescription: ${record['description']}\nDoctor: ${record['doctorName']}';
-    }).join('\n\n') // Add two newline characters between records
+    }).join('\n\n')
         : 'No clinical records available ';
 
     return TextField(
@@ -206,8 +211,6 @@ class ClinicalRecordsPage extends StatelessWidget {
         itemCount: clinicalRecords.length,
         itemBuilder: (context, index) {
           final record = clinicalRecords[index];
-          // Build a widget to display the clinical record data
-          // You can customize the UI as needed
           return const ListTile();
         },
       ),

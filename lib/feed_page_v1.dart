@@ -9,8 +9,9 @@ import 'background/appbar_generic.dart';
 import 'background/background_generic.dart';
 import 'User/get_keycloack_token.dart';
 
-class NovidadesPage extends StatelessWidget {
-  const NovidadesPage({super.key,});
+
+class NovidadesPageV1 extends StatelessWidget {
+  const NovidadesPageV1({super.key,});
 
   Widget buildLoadingIndicator() {
     return const Center(
@@ -27,7 +28,7 @@ class NovidadesPage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => FeedServices(),
       child: Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: CustomAppBar(),
         body: Consumer<FeedServices>(builder: (context, provider, child) {
           List<PostInfo> feeds = provider.feeds;
           if (feeds.isEmpty) {
@@ -37,54 +38,64 @@ class NovidadesPage extends StatelessWidget {
             return buildFeedList(context, feeds);
           }
         }),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.pink,
-          elevation: 5.0,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UploadPage()),
-            );
-          },
-          child: const Icon(Icons.add_a_photo_outlined, color: Colors.white),
-        ),
       ),
     );
   }
 
   Widget buildFeedList(BuildContext context, List<PostInfo> feeds) {
-    return GradientBackground(
-      child: Container(
-        padding: const EdgeInsets.all(5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              ' Novidades',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.pink,
-                fontFamily: 'Handwritten',
-              ),
+    return Stack(
+      children: [
+        GradientBackground(
+          child: Container(
+            padding: const EdgeInsets.all(5),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  ' Novidades',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.pink,
+                    fontFamily: 'Handwritten',
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: feeds.length,
+                    itemBuilder: (context, index) {
+                      return buildPostSection(context, feeds.elementAt(index));
+                    },
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: feeds.length,
-                itemBuilder: (context, index) {
-                  return buildPostSection(context, feeds.elementAt(index));
-                },
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+        Positioned(
+          bottom: 16,
+          right: 16,
+          child: FloatingActionButton(
+            backgroundColor: Colors.pink,
+            elevation: 5.0,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UploadPage()),
+              );
+            },
+            child: const Icon(Icons.add_a_photo_outlined, color: Colors.white),
+          ),
+        ),
+      ],
     );
   }
 
   Widget buildPostSection(BuildContext context, PostInfo post) {
     return buildMediaSection(context, post);
   }
+
 
   Widget buildMedia(BuildContext context, PostInfo post) {
     if (post.filename != null) {
@@ -167,7 +178,8 @@ class NovidadesPage extends StatelessWidget {
                   comment,
                   style: const TextStyle(color: Colors.white),
                 ),
-                onTap: () {},
+                onTap: () {
+                },
               );
             },
           ),

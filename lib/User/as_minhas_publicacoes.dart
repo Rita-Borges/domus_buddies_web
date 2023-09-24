@@ -1,12 +1,12 @@
 import 'dart:typed_data';
 import 'package:domus_buddies/User/as_minhas_publicacoes_service.dart';
 import 'package:flutter/material.dart';
-import 'package:domus_buddies/pet/post_info.dart';
+import 'package:domus_buddies/services/post_info.dart';
 import 'package:domus_buddies/upload_page.dart';
 import 'package:domus_buddies/User/user_info.dart';
 import 'package:provider/provider.dart';
-import '../background/AppBarGeneric.dart';
-import '../background/BackgroundGeneric.dart';
+import '../background/appbar_generic.dart';
+import '../background/background_generic.dart';
 import 'get_keycloack_token.dart';
 
 
@@ -53,7 +53,7 @@ class AsMinhasPublicacoes extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
-                  ' Novidades',
+                  ' As minhas publicações',
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,

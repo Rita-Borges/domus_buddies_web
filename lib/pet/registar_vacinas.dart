@@ -1,8 +1,9 @@
 import 'package:domus_buddies/User/user_info.dart';
+import 'package:domus_buddies/pet/pet_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../background/AppBarGeneric.dart';
-import '../background/BackgroundGeneric.dart';
+import '../background/appbar_generic.dart';
+import '../background/background_generic.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -178,6 +179,13 @@ class _RegistoVacinasState extends State<RegistoVacinas> {
             print('Descrição: $descricao');
             print('Data: $data');
             print('Veterinário: $veterinario');
+            // Navigate to the ResultPage when the button is pressed
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyPetsList(), // Replace with the actual page you want to navigate to
+              ),
+            );
           }
         },
         icon: const Icon(Icons.vaccines_outlined, color: Colors.white),

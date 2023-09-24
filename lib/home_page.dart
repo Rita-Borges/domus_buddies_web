@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'User/Registo.dart';
+import 'User/registo.dart';
 import 'login.dart';
 
 class HomePage extends StatefulWidget {
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
   void navigateToRegisterPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => RegisterPage1()),
+      MaterialPageRoute(builder: (context) => const RegisterPage1()),
     );
   }
 
@@ -83,115 +83,134 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.lightBlue.shade200,
-                Colors.blue.shade600,
-                Colors.indigo.shade900
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Center(
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                const SizedBox(height: 24),
-                const Center(
-                  child: Text(
-                    'Domus Buddies',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pink,
-                      fontFamily: 'Handwritten',
-                      fontSize: 50,
-                    ),
-                  ),
+        body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            final screenHeight = constraints.maxHeight;
+            final screenWidth = constraints.maxWidth;
+            final isSmallScreen = screenWidth < 600;
+
+            return Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.lightBlue.shade200,
+                    Colors.blue.shade600,
+                    Colors.indigo.shade900
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
-                const SizedBox(height: 24),
-                Center(
-                  child: Image.asset(
-                    _weatherIconPath,
-                    width: 100,
-                    height: 100,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Center(
-                  child: Text(
-                    _currentWeather,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 50),
-                Center(
-                  child: Image.asset(
-                    'assets/Gif/MV5L.gif',
-                  ),
-                ),
-                const SizedBox(height: 50),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton.icon(
-                        onPressed: navigateToLoginPage,
-                        icon: const Icon(
-                          Icons.account_circle,
-                          color: Colors.white,
-                        ),
-                        label: const Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.pink,
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
+              ),
+              child: Center(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    SizedBox(height: screenHeight * 0.05),
+                    Center(
+                      child: Text(
+                        'Domus Buddies',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.pink,
+                          fontFamily: 'Handwritten',
+                          fontSize: isSmallScreen ? 40.0 : screenWidth * 0.1,
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      ElevatedButton.icon(
-                        onPressed: navigateToRegisterPage,
-                        icon: const Icon(
-                          Icons.person_add,
+                    ),
+                    SizedBox(height: screenHeight * 0.05),
+                    Center(
+                      child: Image.asset(
+                        _weatherIconPath,
+                        width: screenWidth * 0.2,
+                        height: screenWidth * 0.2,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    Center(
+                      child: Text(
+                        _currentWeather,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
-                        ),
-                        label: const Text(
-                          'Registar',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.pink,
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
+                          fontSize: isSmallScreen ? 20.0 : screenWidth * 0.05,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: screenHeight * 0.1),
+                    Center(
+                      child: Image.asset(
+                        'assets/Gif/MV5L.gif',
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.1),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: navigateToLoginPage,
+                            icon: const Icon(
+                              Icons.account_circle,
+                              color: Colors.white,
+                            ),
+                            label: Text(
+                              'Login',
+                              style: TextStyle(
+                                fontSize: isSmallScreen
+                                    ? 20.0
+                                    : screenWidth * 0.035,
+                                color: Colors.white,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.pink,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: isSmallScreen
+                                      ? 16.0
+                                      : screenWidth * 0.04,
+                                  vertical: screenHeight * 0.02),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: screenWidth * 0.04),
+                          ElevatedButton.icon(
+                            onPressed: navigateToRegisterPage,
+                            icon: const Icon(
+                              Icons.person_add,
+                              color: Colors.white,
+                            ),
+                            label: Text(
+                              'Registar',
+                              style: TextStyle(
+                                fontSize: isSmallScreen
+                                    ? 20.0
+                                    : screenWidth * 0.035,
+                                color: Colors.white,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.pink,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: isSmallScreen
+                                      ? 16.0
+                                      : screenWidth * 0.04,
+                                  vertical: screenHeight * 0.02),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: screenWidth * 0.04),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
