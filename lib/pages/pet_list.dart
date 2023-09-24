@@ -22,7 +22,7 @@ class MyPetsList extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => PetDataProvider(),
       child: Scaffold(
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         body: buildBody(username, authToken),
         floatingActionButton: buildFloatingActionButton(context),
       ),
@@ -37,6 +37,7 @@ class MyPetsList extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             buildHeaderText(),
+            const SizedBox(height: 16.0),
             Consumer<PetDataProvider>(
               builder: (context, provider, child) {
                 List<AnimalInfo> petNames = provider.petNames;
@@ -62,7 +63,7 @@ class MyPetsList extends StatelessWidget {
     return const Text(
       ' Os meus Pets ',
       style: TextStyle(
-        fontSize: 30,
+        fontSize: 40,
         fontWeight: FontWeight.bold,
         color: Colors.pink,
         fontFamily: 'Handwritten',
@@ -78,14 +79,23 @@ class MyPetsList extends StatelessWidget {
 
   Widget buildPetList(List<AnimalInfo> petNames, BuildContext context) {
     return Expanded(
-      child: ListView.builder(
-        itemCount: petNames.length,
-        itemBuilder: (context, index) {
-          return buildPetCard(petNames.elementAt(index), context);
-        },
+      child: Center(
+        child: Container(
+          constraints: const BoxConstraints(
+            maxWidth: 400, // Set the maximum width, adjust as needed
+          ),
+          child: ListView.builder(
+            itemCount: petNames.length,
+            itemBuilder: (context, index) {
+              return buildPetCard(petNames.elementAt(index), context);
+            },
+          ),
+        ),
       ),
     );
   }
+
+
 
   Widget buildPetCard(AnimalInfo animalInfo, BuildContext context) {
     return GestureDetector(

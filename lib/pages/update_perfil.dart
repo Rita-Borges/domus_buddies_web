@@ -7,9 +7,11 @@ import 'package:provider/provider.dart';
 import '../background/appbar_generic.dart';
 import '../background/background_generic.dart';
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 
 import 'feed_page.dart';
+
+import 'package:flutter/foundation.dart' show Uint8List;
+import 'package:file_picker/file_picker.dart' as file_picker;
 
 class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({super.key});
@@ -32,12 +34,16 @@ class _ImageFromFileState extends State<ImageFromFile> {
 
   @override
   Widget build(BuildContext context) {
-    return Image.file(
-      widget.imageFile,
-      key: key,
-      width: 150.0,
-      height: 150.0,
-      fit: BoxFit.cover,
+    return Center(
+      child: SizedBox(
+        width: 150.0,
+        height: 150.0,
+        child: Image.file(
+          widget.imageFile,
+          key: key,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }
@@ -53,9 +59,9 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   final TextEditingController _moradaCidadeController = TextEditingController();
   DateTime? _selectedDate;
   File? _selectedImage;
+  file_picker.PlatformFile? _selectedFile; // Store the uploaded file
 
-
-  Future<void> _pickImage() async {
+/*  Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
@@ -64,7 +70,38 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         _selectedImage = File(image.path);
       });
     }
+  }*/
+
+
+
+  Future<void> _pickImage() async {
+    final imagePicker = await file_picker.FilePicker.platform.pickFiles(
+      type: file_picker.FileType.image, // Use 'file_picker.FileType' to avoid conflicts
+    );
+
+    if (imagePicker != null && imagePicker.files.isNotEmpty) {
+      setState(() {
+        _selectedFile = imagePicker.files.first;
+      });
+    }
   }
+
+  Future<List<int>> getListBytesOfFile() async {
+    if (_selectedFile == null || _selectedFile!.bytes == null) {
+      return []; // Return an empty list or handle the case differently.
+    }
+
+    Uint8List? uint8list = _selectedFile!.bytes;
+
+    if (uint8list != null) {
+      return uint8list.toList();
+    } else {
+      return [];
+    }
+  }
+
+
+
 
   bool _isAnyFieldEmpty() {
     return [
@@ -164,25 +201,26 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double titleFontSize = screenWidth < 600 ? 20.0 : 60.0; // Adjust the values as needed
     return MaterialApp(
       home: Scaffold(
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         body: GradientBackground(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ListView(
-                children: [
-                  Column(
+          child: Center(
+            child: Container(
+                constraints:  const BoxConstraints(maxWidth: 400.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ListView(
                     children: [
-                      Column(
-                        children: [
-                          //const SizedBox(height: 40.0), // Add extra space above the title
-                          const Text(
+                           const Text(
                             'Atualizar perfil ',
                             style: TextStyle(
                               color: Colors.pink,
-                              fontSize: 40.0,
+                              fontSize: 40 ,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Handwritten',
                             ),
@@ -190,43 +228,47 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                                 TextAlign.center, // This line centers the text
                           ),
 
-                          Stack(
-                            children: [
-                              GestureDetector(
-                                onTap: _pickImage,
-                                child: ClipOval(
-                                  child: Opacity(
-                                    opacity: 1.0,
-                                    child: _selectedImage != null
-                                        ? ImageFromFile(
-                                            imageFile: _selectedImage!)
-                                        : Image.asset(
-                                            'assets/images/logo2.png',
-                                            width: 150.0,
-                                            height: 150.0,
-                                            fit: BoxFit.cover,
-                                          ),
+                      Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: _pickImage,
+                            child: Center(
+                              child: ClipOval(
+                                child: Opacity(
+                                  opacity: 1.0,
+                                  child: _selectedImage != null
+                                      ? Image.memory(
+                                    Uint8List.fromList(_selectedFile!.bytes!),
+                                    fit: BoxFit.cover,
+                                  )
+                                      : Image.asset(
+                                    'assets/images/logo2.png',
+                                    width: 150.0,
+                                    height: 150.0,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
-                              Positioned(
-                                right: 8,
-                                bottom: 8,
-                                child: Tooltip(
-                                  message: "Change Picture",
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.white54,
-                                    child: IconButton(
-                                      icon: const Icon(Icons.edit,
-                                          color: Colors.pink),
-                                      onPressed: _pickImage,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                          const SizedBox(height: 16.0),
+                          Positioned(
+                            right: 8,
+                            bottom: 8,
+                            child: Tooltip(
+                              message: "Change Picture",
+                              child: CircleAvatar(
+                                backgroundColor: Colors.white54,
+                                child: IconButton(
+                                  icon: const Icon(Icons.edit, color: Colors.pink),
+                                  onPressed: _pickImage,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 16.0),
                           TextField(
                             controller: _usernameController,
                             style: const TextStyle(color: Colors.white),
@@ -415,9 +457,9 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                           ),
                         ],
                       ),
-                    ],
+
                   ),
-                ]),
+                ),
           ),
         ),
       ),
@@ -437,7 +479,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 // Navigate to the NovidadesPage
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) =>  NovidadesPage()),
+                  MaterialPageRoute(builder: (context) =>  const NovidadesPage()),
                 );
               },
               child: const Text('OK'),

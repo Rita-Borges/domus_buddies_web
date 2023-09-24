@@ -1,15 +1,14 @@
-import 'package:domus_buddies/User/user_info.dart';
 import 'package:domus_buddies/pages/pet_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../background/appbar_generic.dart';
-import '../../background/background_generic.dart';
+import '../background/appbar_generic.dart';
+import '../background/background_generic.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import '../../User/get_keycloack_token.dart';
-import '../../pet/animal_info.dart';
+import '../User/get_keycloack_token.dart';
+import '../pet/animal_info.dart';
 
 class RegistoVacinas extends StatefulWidget {
   final AnimalInfo animalInfo;
@@ -75,53 +74,60 @@ class _RegistoVacinasState extends State<RegistoVacinas> {
   @override
   void initState() {
     super.initState();
-    // Initialize fields here if needed
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: GradientBackground(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Text(
-                'Registo Clinico',
-                style: TextStyle(
-                  color: Colors.pink,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Handwritten',
+        child: Center (
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 400, // Set the maximum height to 400
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text(
+                  'Registo Clinico',
+                  style: TextStyle(
+                    color: Colors.pink,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Handwritten',
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16.0),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        _buildTextField(_nameController, 'Nome', _validateField),
-                        _buildTextField(_descricaoController, 'Descrição', _validateField),
-                        _buildDateField(),
-                        const SizedBox(height: 16.0),
-                        _buildTextField(_doctorNameController, 'Veterinário', _validateField),
-                        const SizedBox(height: 16.0),
-                        _buildRegisterButton(),
-                      ],
+                const SizedBox(height: 16.0),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          _buildTextField(_nameController, 'Nome', _validateField),
+                          _buildTextField(_descricaoController, 'Descrição', _validateField),
+                          _buildDateField(),
+                          const SizedBox(height: 16.0),
+                          _buildTextField(_doctorNameController, 'Veterinário', _validateField),
+                          const SizedBox(height: 16.0),
+                          _buildRegisterButton(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
+      ),
     );
   }
+
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 

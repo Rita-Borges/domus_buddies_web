@@ -10,7 +10,6 @@ import '../background/appbar_generic.dart';
 import '../background/background_generic.dart';
 import '../User/get_keycloack_token.dart';
 
-
 class AddPetToUser extends StatefulWidget {
   const AddPetToUser({Key? key}) : super(key: key);
 
@@ -30,7 +29,6 @@ class _AddPetToUserState extends State<AddPetToUser> {
   List<String> _breeds = [];
   final List<String> _genders = ['Feminino', 'Masculino'];
 
-
   @override
   void initState() {
     super.initState();
@@ -40,7 +38,8 @@ class _AddPetToUserState extends State<AddPetToUser> {
 
   Future<void> _fetchEspecie() async {
     try {
-      final response = await http.get(Uri.parse('http://domusbuddies.eu:8082/api/v1/specie/listAll'));
+      final response = await http
+          .get(Uri.parse('http://domusbuddies.eu:8082/api/v1/specie/listAll'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -57,7 +56,8 @@ class _AddPetToUserState extends State<AddPetToUser> {
   Future<void> _fetchBreed() async {
     try {
       print(_selectedEspecie);
-      final response = await http.get(Uri.parse('http://domusbuddies.eu:8082/api/v1/specie/$_selectedEspecie/breeds'));
+      final response = await http.get(Uri.parse(
+          'http://domusbuddies.eu:8082/api/v1/specie/$_selectedEspecie/breeds'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -71,29 +71,29 @@ class _AddPetToUserState extends State<AddPetToUser> {
     }
   }
 
+  Widget _buildEspecieDropdown() =>
+      _buildDropdown(_species, _selectedEspecie, (value) {
+        setState(() {
+          _selectedEspecie = value;
+          // Reset the selected breed when the species changes
+          _selectedRaca = null;
+          _fetchBreed();
+        });
+      }, 'Espécie');
 
+  Widget _buildRacaDropdown() =>
+      _buildDropdown(_breeds, _selectedRaca, (value) {
+        setState(() {
+          _selectedRaca = value;
+        });
+      }, 'Raça');
 
-
-  Widget _buildEspecieDropdown() => _buildDropdown(_species, _selectedEspecie, (value) {
-    setState(() {
-      _selectedEspecie = value;
-      // Reset the selected breed when the species changes
-      _selectedRaca = null;
-      _fetchBreed();
-    });
-  }, 'Espécie');
-
-  Widget _buildRacaDropdown() => _buildDropdown(_breeds, _selectedRaca, (value) {
-    setState(() {
-      _selectedRaca = value;
-    });
-  }, 'Raça');
-
-  Widget _buildGenderDropdown() => _buildDropdown(_genders, _selectedGender, (value) {
-    setState(() {
-      _selectedGender = value;
-    });
-  }, 'Sexo');
+  Widget _buildGenderDropdown() =>
+      _buildDropdown(_genders, _selectedGender, (value) {
+        setState(() {
+          _selectedGender = value;
+        });
+      }, 'Sexo');
 
   @override
   Widget build(BuildContext context) {
@@ -101,30 +101,34 @@ class _AddPetToUserState extends State<AddPetToUser> {
       appBar: const CustomAppBar(),
       body: GradientBackground(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              _buildTitle(),
-              const SizedBox(height: 8),
-              _buildPetImageSelector(),
-              const SizedBox(height: 8),
-              _buildNameField(),
-              const SizedBox(height: 8),
-              _buildShipNumberField(),
-              const SizedBox(height: 8),
-              _buildEspecieDropdown(),
-              const SizedBox(height: 8),
-              _buildRacaDropdown(),
-              const SizedBox(height: 8),
-              _buildGenderSelector(), // Add gender selector
-              const SizedBox(height: 8),
-              _buildDateOfBirthSelector(),
-              const SizedBox(height: 16),
-              _buildAddPetButton(),
-            ],
-          ),
-    ),
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _buildTitle(),
+                    const SizedBox(height: 8),
+                    _buildPetImageSelector(),
+                    const SizedBox(height: 8),
+                    _buildNameField(),
+                    const SizedBox(height: 8),
+                    _buildShipNumberField(),
+                    const SizedBox(height: 8),
+                    _buildEspecieDropdown(),
+                    const SizedBox(height: 8),
+                    _buildRacaDropdown(),
+                    const SizedBox(height: 8),
+                    _buildGenderSelector(),
+                    const SizedBox(height: 8),
+                    _buildDateOfBirthSelector(),
+                    const SizedBox(height: 16),
+                    _buildAddPetButton(),
+                  ],
+                ),
+              ),
+            )),
       ),
     );
   }
@@ -140,6 +144,7 @@ class _AddPetToUserState extends State<AddPetToUser> {
       ),
     );
   }
+
   Widget _buildGenderSelector() {
     return _buildGenderDropdown();
   }
@@ -155,13 +160,13 @@ class _AddPetToUserState extends State<AddPetToUser> {
               child: _selectedImage != null
                   ? Image.file(_selectedImage!)
                   : Image.asset(
-                'assets/images/logo2.png',
-                width: 150.0,
-                height: 150.0,
-                fit: BoxFit.cover,
-              ),
+                      'assets/images/logo2.png',
+                      width: 150.0,
+                      height: 150.0,
+                      fit: BoxFit.cover,
+                    ),
             ),
-            ),
+          ),
         ),
         Positioned(
           right: 8,
@@ -182,7 +187,9 @@ class _AddPetToUserState extends State<AddPetToUser> {
   }
 
   Widget _buildNameField() => _buildTextField(_nameController, 'Nome');
-  Widget _buildShipNumberField() => _buildTextField(_shipController, 'Número do ship');
+
+  Widget _buildShipNumberField() =>
+      _buildTextField(_shipController, 'Número do ship');
 
   Widget _buildTextField(TextEditingController controller, String label) {
     return TextField(
@@ -201,8 +208,8 @@ class _AddPetToUserState extends State<AddPetToUser> {
     );
   }
 
-
-  Widget _buildDropdown(List<String> items, String? selectedValue, ValueChanged<String?> onChanged, String label) {
+  Widget _buildDropdown(List<String> items, String? selectedValue,
+      ValueChanged<String?> onChanged, String label) {
     return DropdownButtonFormField(
       iconEnabledColor: Colors.pink,
       iconDisabledColor: Colors.pink,
@@ -262,7 +269,7 @@ class _AddPetToUserState extends State<AddPetToUser> {
 
   Widget _buildAddPetButton() {
     return SizedBox(
-      height: 50.0,
+     // height: 50.0,
       width: double.infinity,
       child: ElevatedButton(
         onPressed: _onAddPetPressed,
@@ -277,7 +284,7 @@ class _AddPetToUserState extends State<AddPetToUser> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.pets_rounded),
-            SizedBox(width: 8.0),
+            //sizedBox(width: 8.0),
             Text(
               'Adicionar Pet',
               style: TextStyle(
@@ -336,7 +343,8 @@ class _AddPetToUserState extends State<AddPetToUser> {
     print(_selectedRaca);
     print(_selectedDate);
     if (_validateInputs()) {
-      var gender = _selectedGender?.compareTo("Femenino") == 0 ? 'FEMALE' : 'MALE';
+      var gender =
+          _selectedGender?.compareTo("Femenino") == 0 ? 'FEMALE' : 'MALE';
       var datebirth = _selectedDate?.toIso8601String();
       final petData = {
         'name': _nameController.text,
@@ -351,20 +359,19 @@ class _AddPetToUserState extends State<AddPetToUser> {
 
       // Get the token using the existing KeycloakServicePut object
       final accessTokenProvider =
-      Provider.of<FetchUserData>(context,
-          listen: false);
-      String? accessToken =
-          accessTokenProvider.accessToken;
+          Provider.of<FetchUserData>(context, listen: false);
+      String? accessToken = accessTokenProvider.accessToken;
 
       final response = await http.post(
-        Uri.parse('http://domusbuddies.eu:8082/api/v1/animals/create'), // Replace with your actual API endpoint
+        Uri.parse('http://domusbuddies.eu:8082/api/v1/animals/create'),
+        // Replace with your actual API endpoint
         headers: <String, String>{
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $accessToken', // Include the token in the headers
+          'Authorization': 'Bearer $accessToken',
+          // Include the token in the headers
         },
         body: jsonEncode(petData),
       );
-
 
       if (response.statusCode == 201) {
         const snackBar = SnackBar(content: Text('Pet added successfully!'));
@@ -375,7 +382,9 @@ class _AddPetToUserState extends State<AddPetToUser> {
 
         // Navigate to a different page after showing the success message
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const MyPetsList()), // Replace SuccessPage with the actual page you want to navigate to
+          MaterialPageRoute(
+              builder: (context) =>
+                  const MyPetsList()), // Replace SuccessPage with the actual page you want to navigate to
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -394,8 +403,7 @@ class _AddPetToUserState extends State<AddPetToUser> {
         _shipController.text.isNotEmpty &&
         _selectedEspecie != null &&
         _selectedRaca != null &&
-        _selectedDate != null ;
-        //_selectedImage != null;
+        _selectedDate != null;
+    //_selectedImage != null;
   }
-
 }

@@ -6,7 +6,7 @@ import '../background/appbar_generic.dart';
 import '../background/background_generic.dart';
 import '../User/get_keycloack_token.dart';
 import '../pet/animal_info.dart';
-import 'progresso/registar_vacinas.dart';
+import 'registar_vacinas.dart';
 import 'dart:async';
 
 class ObterRegistoVeterinario extends StatefulWidget {
@@ -88,27 +88,31 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
-      body: GradientBackground(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text(
-                'Registo veterinário',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.pink,
-                  fontFamily: 'Handwritten',
-                ),
-              ),
+        appBar: const CustomAppBar(),
+    body: GradientBackground( // Center the content vertically and horizontally
+    child: Center(
+    child: Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+    const Text(
+    'Registo veterinário',
+    style: TextStyle(
+    fontSize: 40,
+    fontWeight: FontWeight.bold,
+    color: Colors.pink,
+    fontFamily: 'Handwritten',
+    ),
+    ),
               const SizedBox(height: 16),
-              Expanded(
-                child: ListView(
-                  children: [
+          Expanded(
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 400),
+              alignment: Alignment.center,
+              child: ListView(
+                children: [
                     _buildElevatedButton(
                         'Chip nº: ${widget.animalInfo.microchip ?? ""}'),
                     const SizedBox(height: 8),
@@ -142,11 +146,13 @@ class _ObterRegistoVeterinarioState extends State<ObterRegistoVeterinario> {
                     _buildTextField('Next Appointment = ''work in progress',[]),
                   ],
                 ),
-              ),
+              )
+            ),
             ],
           ),
         ),
       ),
+    ),
     );
   }
 

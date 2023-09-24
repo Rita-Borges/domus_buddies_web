@@ -28,7 +28,7 @@ class AsMinhasPublicacoes extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => AsMinhasPubliccoesService(),
       child: Scaffold(
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         body: Consumer<AsMinhasPubliccoesService>(builder: (context, provider, child) {
           List<PostInfo> feeds = provider.feeds;
           if (feeds.isEmpty) {
@@ -43,6 +43,8 @@ class AsMinhasPublicacoes extends StatelessWidget {
   }
 
   Widget buildFeedList(BuildContext context, List<PostInfo> feeds) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double titleFontSize = screenWidth < 600 ? 30.0 : 60.0; // Adjust the values as needed
     return Stack(
       children: [
         GradientBackground(
@@ -52,10 +54,10 @@ class AsMinhasPublicacoes extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
+                 Text(
                   ' As minhas publicações',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: titleFontSize,
                     fontWeight: FontWeight.bold,
                     color: Colors.pink,
                     fontFamily: 'Handwritten',
@@ -83,7 +85,7 @@ class AsMinhasPublicacoes extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => UploadPage()),
+                MaterialPageRoute(builder: (context) => const UploadPage()),
               );
             },
             child: const Icon(Icons.add_a_photo_outlined, color: Colors.white),

@@ -69,22 +69,25 @@ class _UploadPageState extends State<UploadPage> {
     final accessTokenProvider = Provider.of<FetchUserData>(context, listen: false);
     final authToken = accessTokenProvider.accessToken;
     String? loggedInUsername = UserSession.getLoggedInUsername();
-
+    double screenWidth = MediaQuery.of(context).size.width;
+    double titleFontSize = screenWidth < 600 ? 30.0 : 60.0; // Adjust the values as needed
     return MaterialApp(
       home: Scaffold(
         appBar: const CustomAppBar(),
         body: GradientBackground(
+        child: Center(
           child: Container(
+            constraints: const BoxConstraints(maxWidth: 400), // Set your maximum width here
             padding: const EdgeInsets.all(20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Title
-                const Text(
+                 Text(
                   'Publicar',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: titleFontSize,
                     fontWeight: FontWeight.bold,
                     color: Colors.pink,
                     fontFamily: 'Handwritten',
@@ -174,6 +177,7 @@ class _UploadPageState extends State<UploadPage> {
             ),
           ),
         ),
+      ),
       ),
     );
   }

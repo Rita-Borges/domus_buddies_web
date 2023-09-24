@@ -53,16 +53,19 @@ class NovidadesPage extends StatelessWidget {
   }
 
   Widget buildFeedList(BuildContext context, List<PostInfo> feeds) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double titleFontSize = screenWidth < 600 ? 30.0 : 60.0; // Adjust the values as needed
+
     return GradientBackground(
       child: Container(
         padding: const EdgeInsets.all(5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               ' Novidades',
               style: TextStyle(
-                fontSize: 30,
+                fontSize: titleFontSize,
                 fontWeight: FontWeight.bold,
                 color: Colors.pink,
                 fontFamily: 'Handwritten',
@@ -81,6 +84,7 @@ class NovidadesPage extends StatelessWidget {
       ),
     );
   }
+
 
   Widget buildPostSection(BuildContext context, PostInfo post) {
     return buildMediaSection(context, post);

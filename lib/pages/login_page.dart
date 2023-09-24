@@ -1,7 +1,7 @@
 import 'package:domus_buddies/services/login_keycloack.dart';
 import 'package:flutter/material.dart';
 import '../background/background_generic.dart';
-import 'recovery_page.dart';
+import 'progresso/recovery_page.dart';
 import 'package:domus_buddies/pages/feed_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -126,13 +126,13 @@ class _CustomBodyState extends State<CustomBody> {
                 double fontSize = availableWidth * 0.05; // Adjust this multiplier as needed
                 fontSize = fontSize.clamp(30.0, 80.0); // Limit the font size range
 
-                return FittedBox(
+                return const FittedBox(
                   fit: BoxFit.scaleDown, // You can choose a different BoxFit option if needed
                   child: Text(
                     'Efetue Login',
                     style: TextStyle(
                       color: Colors.pink,
-                      fontSize: fontSize,
+                      fontSize: 40,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Handwritten',
                     ),
